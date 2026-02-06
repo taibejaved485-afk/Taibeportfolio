@@ -92,8 +92,8 @@ export const Hero: React.FC = () => {
             </span>
           </div>
           
-          <h1 className="font-heading text-6xl md:text-8xl lg:text-[11rem] font-black text-accent leading-[0.8] tracking-tighter mb-10">
-            <span className="block opacity-40 text-xl md:text-3xl lg:text-4xl tracking-[0.3em] mb-4 uppercase">
+          <h1 className="font-heading text-5xl md:text-8xl lg:text-[11rem] font-black text-accent leading-[0.85] tracking-tighter mb-10">
+            <span className="block opacity-40 text-lg md:text-3xl lg:text-4xl tracking-[0.3em] mb-4 uppercase">
               Full Stack Developer
             </span>
             <span 
@@ -145,7 +145,7 @@ export const Hero: React.FC = () => {
             
             {/* Profile Frame */}
             <div 
-              className="relative w-[320px] h-[400px] md:w-[450px] md:h-[550px] lg:w-[480px] lg:h-[620px] rounded-[4rem] overflow-hidden glass border-2 border-white/20 shadow-[0_40px_100px_rgba(0,0,0,0.6)] transition-all duration-700 transform"
+              className="relative w-[300px] h-[380px] md:w-[450px] md:h-[550px] lg:w-[480px] lg:h-[620px] rounded-[3.5rem] overflow-hidden glass border-2 border-white/20 shadow-[0_40px_100px_rgba(0,0,0,0.6)] transition-all duration-700 transform"
               style={{ 
                 transform: `perspective(2000px) rotateY(${tilt.x}deg) rotateX(${tilt.y}deg)`,
               }}
@@ -156,10 +156,8 @@ export const Hero: React.FC = () => {
                 className="w-full h-full object-cover grayscale brightness-75 transition-all duration-1000 group-hover:grayscale-0 group-hover:brightness-100 group-hover:scale-105"
               />
               
-              {/* Overlay Holographic Elements */}
               <div className="absolute inset-0 pointer-events-none bg-gradient-to-tr from-primary/10 via-transparent to-sky/10 opacity-30 group-hover:opacity-0 transition-opacity"></div>
               
-              {/* Scanlines Effect */}
               <div className="absolute inset-0 pointer-events-none opacity-[0.1]" 
                 style={{ 
                   backgroundImage: 'linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.4) 50%), linear-gradient(90deg, rgba(251, 78, 160, 0.05), rgba(0, 243, 255, 0.05), rgba(59, 130, 246, 0.05))',
@@ -167,15 +165,13 @@ export const Hero: React.FC = () => {
                 }}
               ></div>
 
-              {/* Data Overlay */}
-              <div className="absolute top-10 left-10 flex flex-col gap-3">
-                <div className="px-4 py-1.5 glass rounded-xl border border-white/10 text-[10px] text-white/70 font-black uppercase tracking-[0.3em] backdrop-blur-xl">Subject: Taibe</div>
-                <div className="px-4 py-1.5 glass rounded-xl border border-white/10 text-[10px] text-white/70 font-black uppercase tracking-[0.3em] backdrop-blur-xl">Class: Creator</div>
+              <div className="absolute top-6 left-6 md:top-10 md:left-10 flex flex-col gap-3">
+                <div className="px-4 py-1.5 glass rounded-xl border border-white/10 text-[9px] text-white/70 font-black uppercase tracking-[0.3em] backdrop-blur-xl">Subject: Taibe</div>
+                <div className="px-4 py-1.5 glass rounded-xl border border-white/10 text-[9px] text-white/70 font-black uppercase tracking-[0.3em] backdrop-blur-xl">Class: Creator</div>
               </div>
             </div>
 
-            {/* Badge Details */}
-            <div className="absolute -top-4 -right-4 px-6 py-3 glass rounded-2xl border border-sky/30 text-sky font-black text-xs tracking-widest uppercase animate-float shadow-[0_0_30px_rgba(0,243,255,0.2)]">
+            <div className="absolute -top-4 -right-4 px-6 py-3 glass rounded-2xl border border-sky/30 text-sky font-black text-[10px] tracking-widest uppercase animate-float shadow-[0_0_30px_rgba(0,243,255,0.2)]">
               Online // Active
             </div>
           </div>

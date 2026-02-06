@@ -49,27 +49,6 @@ const techIcons = [
   { name: 'Illustrator', color: '#00F3FF', delay: '5s', top: '25%', left: '15%', Icon: Icons.Illustrator },
 ];
 
-const SkillParticle: React.FC<{ icon: typeof techIcons[0] }> = ({ icon }) => (
-  <div 
-    className="absolute pointer-events-none animate-float opacity-20 hover:opacity-100 transition-opacity duration-500"
-    style={{ 
-      top: icon.top, 
-      left: icon.left, 
-      animationDelay: icon.delay,
-    }}
-  >
-    <div 
-      className="w-16 h-16 glass rounded-2xl border border-white/10 flex items-center justify-center group-hover:scale-125 transition-transform"
-      style={{ 
-        color: icon.color,
-        boxShadow: `0 0 30px ${icon.color}33`,
-      }}
-    >
-      <icon.Icon />
-    </div>
-  </div>
-);
-
 const skills = [
   { name: 'Frontend Architecture', level: '95%', color: '#FB4EA0', icon: 'M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4' },
   { name: 'Backend Engineering', level: '90%', color: '#3B82F6', icon: 'M5 12h14M5 12l4-4m-4 4l4 4' },
@@ -81,107 +60,69 @@ const skills = [
   { name: 'Interface Design', level: '92%', color: '#3B82F6', icon: 'M12 11c0 3.517-1.009 6.799-2.753 9.571m-3.44-2.04l.054-.09A10.003 10.003 0 013 12c0-3.683 1.998-6.9 5-8.583C10.832 1.888 19 1.6 19 1.6s.3 6.9-3.235 9.513a5.5 5.5 0 01-4.765-.513z' },
 ];
 
-const SkillCard: React.FC<{ skill: typeof skills[0] }> = ({ skill }) => {
-  const [tilt, setTilt] = useState({ x: 0, y: 0 });
-
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    const rect = e.currentTarget.getBoundingClientRect();
-    const x = ((e.clientX - rect.left) / rect.width - 0.5) * 10;
-    const y = ((e.clientY - rect.top) / rect.height - 0.5) * -10;
-    setTilt({ x, y });
-  };
-
-  const resetTilt = () => setTilt({ x: 0, y: 0 });
-
-  return (
+const SkillCard: React.FC<{ skill: typeof skills[0] }> = ({ skill }) => (
+  <div className="w-[280px] sm:w-full p-8 glass border-white/5 rounded-[2rem] transition-all duration-500 mr-6 sm:mr-0">
     <div 
-      onMouseMove={handleMouseMove}
-      onMouseLeave={resetTilt}
-      className="group relative p-8 glass border-white/5 rounded-[2rem] transition-all duration-500 hover:-translate-y-2 overflow-hidden shadow-2xl"
-      style={{ transform: `perspective(1000px) rotateX(${tilt.y}deg) rotateY(${tilt.x}deg)` }}
+      className="w-14 h-14 rounded-2xl glass border border-white/10 flex items-center justify-center mb-8"
+      style={{ boxShadow: `0 0 20px ${skill.color}33` }}
     >
-      <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
-      
-      <div className="relative z-10">
-        <div 
-          className="w-14 h-14 rounded-2xl glass border border-white/10 flex items-center justify-center mb-8 group-hover:scale-110 transition-transform"
-          style={{ boxShadow: `0 0 20px ${skill.color}33` }}
-        >
-          <svg className="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke={skill.color}>
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d={skill.icon} />
-          </svg>
-        </div>
-
-        <h4 className="text-accent font-black text-lg mb-5 tracking-tight">{skill.name}</h4>
-        
-        <div className="relative w-full h-1 bg-white/5 rounded-full overflow-hidden">
-          <div 
-            className="h-full transition-all duration-1000 ease-out" 
-            style={{ width: skill.level, backgroundColor: skill.color }}
-          ></div>
-        </div>
-        <div className="flex justify-between mt-3">
-          <span className="text-[9px] text-accent/20 uppercase font-black tracking-widest">Mastery</span>
-          <span className="text-[10px] font-black" style={{ color: skill.color }}>{skill.level}</span>
-        </div>
-      </div>
+      <svg className="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke={skill.color}>
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d={skill.icon} />
+      </svg>
     </div>
-  );
-};
+    <h4 className="text-accent font-black text-lg mb-5 tracking-tight">{skill.name}</h4>
+    <div className="relative w-full h-1 bg-white/5 rounded-full overflow-hidden">
+      <div 
+        className="h-full" 
+        style={{ width: skill.level, backgroundColor: skill.color }}
+      ></div>
+    </div>
+    <div className="flex justify-between mt-3">
+      <span className="text-[9px] text-accent/20 uppercase font-black tracking-widest">Mastery</span>
+      <span className="text-[10px] font-black" style={{ color: skill.color }}>{skill.level}</span>
+    </div>
+  </div>
+);
 
 export const Skills: React.FC = () => {
   return (
     <section id="skills" className="py-32 relative overflow-hidden">
-      {/* Background Animated Particles */}
-      <div className="absolute inset-0 z-0">
-        {techIcons.map((icon, idx) => <SkillParticle key={`tech-${idx}`} icon={icon} />)}
-      </div>
-
       <div className="container mx-auto px-6 relative z-10">
-        <div className="max-w-4xl mx-auto text-center mb-16">
+        <div className="max-w-4xl mx-auto text-center mb-16 px-4">
           <div className="inline-block px-4 py-1 rounded-full glass border border-primary/20 mb-6">
             <h2 className="text-[10px] font-black text-primary tracking-[0.4em] uppercase">Technological Arsenal</h2>
           </div>
-          <h3 className="text-5xl md:text-7xl font-heading font-black text-accent leading-tight">
+          <h3 className="text-4xl md:text-7xl font-heading font-black text-accent leading-tight">
             The Digital <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-secondary to-sky">Matrix & Canvas</span>
           </h3>
-          <p className="mt-8 text-accent/40 max-w-2xl mx-auto text-lg font-light italic">
-            "Merging the logic of Python and JavaScript with the aesthetics of Photoshop and Illustrator."
-          </p>
         </div>
 
-        {/* Core Stack Sliding Marquee */}
-        <div className="relative w-full overflow-hidden py-12 mb-24">
+        <div className="relative w-full overflow-hidden py-12 mb-12">
           <div className="flex animate-scroll whitespace-nowrap gap-8 w-fit">
             {[...techIcons, ...techIcons].map((item, idx) => (
-              <div 
-                key={idx}
-                className="inline-flex items-center gap-4 px-10 py-6 glass rounded-3xl border border-white/5 group transition-all duration-500 hover:border-white/20"
-              >
+              <div key={idx} className="inline-flex items-center gap-4 px-10 py-6 glass rounded-3xl border border-white/5 group">
                 <div 
-                  className="p-3 rounded-xl bg-white/5 group-hover:scale-110 transition-transform duration-500"
-                  style={{ 
-                    color: item.color,
-                    filter: `drop-shadow(0 0 8px ${item.color}88)`
-                  }}
+                  className="p-3 rounded-xl bg-white/5"
+                  style={{ color: item.color, filter: `drop-shadow(0 0 8px ${item.color}88)` }}
                 >
                   <item.Icon />
                 </div>
-                <span className="text-xl font-black text-white/40 group-hover:text-white transition-colors tracking-tighter uppercase">
+                <span className="text-xl font-black text-white/40 group-hover:text-white transition-colors uppercase">
                   {item.name}
                 </span>
               </div>
             ))}
           </div>
-          <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-darkBg to-transparent z-10"></div>
-          <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-darkBg to-transparent z-10"></div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="mobile-slider lg:grid lg:grid-cols-4 gap-8 pb-10">
           {skills.map((skill, index) => (
             <SkillCard key={index} skill={skill} />
           ))}
+        </div>
+        <div className="lg:hidden flex justify-center mt-2 gap-1.5 opacity-20">
+           {skills.map((_, i) => <div key={i} className="w-1.5 h-1.5 bg-white rounded-full"></div>)}
         </div>
       </div>
     </section>

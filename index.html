@@ -88,21 +88,19 @@
             box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.8);
         }
 
-        .glow-border {
-            position: relative;
+        .mobile-slider {
+            display: flex;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
         }
-        .glow-border::after {
-            content: '';
-            position: absolute;
-            inset: -1px;
-            background: linear-gradient(45deg, var(--primary), var(--secondary), var(--sky));
-            z-index: -1;
-            border-radius: inherit;
-            opacity: 0;
-            transition: opacity 0.5s ease;
+        .mobile-slider::-webkit-scrollbar {
+            display: none;
         }
-        .glow-border:hover::after {
-            opacity: 0.5;
+        .mobile-slider > * {
+            scroll-snap-align: center;
+            flex-shrink: 0;
         }
 
         .custom-scrollbar::-webkit-scrollbar {
@@ -114,10 +112,6 @@
         .custom-scrollbar::-webkit-scrollbar-thumb {
             background: linear-gradient(to bottom, var(--primary), var(--secondary), var(--sky));
             border-radius: 10px;
-        }
-
-        .services-slider-container:hover .services-track {
-            animation-play-state: paused;
         }
 
         @media (max-width: 768px) {
@@ -139,7 +133,6 @@
 <body class="custom-scrollbar">
     <div class="noise"></div>
     <div id="root"></div>
-    <!-- Explicitly loading the index.tsx as a module to prevent blank screen errors -->
     <script type="module" src="./index.tsx"></script>
 </body>
 </html>
