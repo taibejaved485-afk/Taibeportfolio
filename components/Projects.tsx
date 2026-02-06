@@ -7,63 +7,72 @@ const projects = [
     category: 'Digital Identity',
     image: 'https://i.pinimg.com/736x/26/5c/43/265c43038b3303cd2d2a87590f8b36c6.jpg',
     tags: ['React', 'Tailwind'],
-    link: 'https://ahadportfolio-inky.vercel.app'
+    link: 'https://ahadportfolio-inky.vercel.app',
+    glowColor: 'rgba(251, 78, 160, 0.4)' // Pink
   },
   {
     title: 'AHMAD PORTFOLIO',
     category: 'Creative Showcase',
     image: 'https://i.pinimg.com/736x/96/4d/36/964d3602afbd96c076f212275c2b5e00.jpg',
     tags: ['Next.js', 'Framer'],
-    link: 'https://ahmadprotfolio.vercel.app'
+    link: 'https://ahmadprotfolio.vercel.app',
+    glowColor: 'rgba(59, 130, 246, 0.4)' // Blue
   },
   {
     title: 'TECHSKOOP',
     category: 'Tech Platform',
     image: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&q=80&w=1200',
     tags: ['Full Stack', 'Cloud'],
-    link: 'https://techskoop.vercel.app'
+    link: 'https://techskoop.vercel.app',
+    glowColor: 'rgba(0, 243, 255, 0.4)' // Sky
   },
   {
     title: 'BRIDAL SALOON',
     category: 'Luxury E-Commerce',
     image: 'https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&q=80&w=1200',
     tags: ['UI/UX', 'Styling'],
-    link: 'https://bridal-saloon.vercel.app'
+    link: 'https://bridal-saloon.vercel.app',
+    glowColor: 'rgba(251, 78, 160, 0.4)'
   },
   {
     title: 'MG DESIGN X',
     category: 'Design Powerhouse',
     image: 'https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&q=80&w=1200',
     tags: ['Branding', 'Web Design'],
-    link: 'https://mgdesignx.com/'
+    link: 'https://mgdesignx.com/',
+    glowColor: 'rgba(59, 130, 246, 0.4)'
   },
   {
     title: 'TAIBE MART',
     category: 'Commerce Nexus',
     image: 'https://images.unsplash.com/photo-1557821552-17105176677c?auto=format&fit=crop&q=80&w=1200',
     tags: ['E-Commerce', 'React'],
-    link: 'http://taibemart.infinityfreeapp.com/'
+    link: 'http://taibemart.infinityfreeapp.com/',
+    glowColor: 'rgba(0, 243, 255, 0.4)'
   },
   {
     title: 'MOTRAL STUDIO',
     category: 'Agency Interface',
     image: 'https://images.unsplash.com/photo-1497215728101-856f4ea42174?auto=format&fit=crop&q=80&w=1200',
     tags: ['Web Design', 'Branding'],
-    link: 'https://motral-web-studio.vercel.app'
+    link: 'https://motral-web-studio.vercel.app',
+    glowColor: 'rgba(251, 78, 160, 0.4)'
   },
   {
     title: 'MOTRAL PARTICLES',
     category: 'Visual Experiment',
     image: 'https://images.unsplash.com/photo-1633356122544-f134324a6cee?auto=format&fit=crop&q=80&w=1200',
     tags: ['Three.js', 'Canvas'],
-    link: 'https://motralparticles.vercel.app'
+    link: 'https://motralparticles.vercel.app',
+    glowColor: 'rgba(59, 130, 246, 0.4)'
   },
   {
     title: 'PIZZA HUT MUREX',
     category: 'Food Interface',
     image: 'https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&q=80&w=1200',
     tags: ['React', 'System Design'],
-    link: 'https://pizza-hut-murex.vercel.app'
+    link: 'https://pizza-hut-murex.vercel.app',
+    glowColor: 'rgba(0, 243, 255, 0.4)'
   }
 ];
 
@@ -90,14 +99,24 @@ export const Projects: React.FC = () => {
               rel="noopener noreferrer"
               className="w-[85vw] lg:w-full group relative cursor-pointer mr-8 lg:mr-0 block"
             >
-              <div className="relative aspect-[16/11] rounded-[2.5rem] md:rounded-[3.5rem] overflow-hidden bg-darkBg border border-white/5 transition-transform duration-700 hover:scale-[0.98]">
+              {/* Neon Light Glow Background - Hidden by default, appears on hover */}
+              <div 
+                className="absolute inset-0 blur-[80px] rounded-[3.5rem] opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none -z-10"
+                style={{ backgroundColor: project.glowColor }}
+              ></div>
+
+              <div className="relative aspect-[16/11] rounded-[2.5rem] md:rounded-[3.5rem] overflow-hidden glass border border-white/10 transition-all duration-700 hover:scale-[0.98] hover:border-white/30 bg-white/[0.01]">
+                {/* Background Image */}
                 <img 
                   src={project.image} 
                   alt={project.title} 
                   className="w-full h-full object-cover transition-all duration-1000 scale-110 group-hover:scale-125 group-hover:rotate-1"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-darkBg via-darkBg/10 to-transparent opacity-90 group-hover:opacity-70 transition-opacity duration-700"></div>
                 
+                {/* Glass Overlays */}
+                <div className="absolute inset-0 bg-gradient-to-t from-darkBg via-darkBg/10 to-transparent opacity-90 group-hover:opacity-60 transition-all duration-700"></div>
+                <div className="absolute inset-0 backdrop-blur-[2px] opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+
                 <div className="absolute inset-0 p-8 md:p-12 flex flex-col justify-end">
                   <span className="text-primary text-[10px] font-black tracking-[0.3em] uppercase mb-2">
                     {project.category}
@@ -107,7 +126,7 @@ export const Projects: React.FC = () => {
                   </h4>
                   <div className="flex flex-wrap gap-2">
                     {project.tags.map((tag, i) => (
-                      <span key={i} className="px-3 py-1 glass rounded-lg text-[8px] text-accent/60 font-black tracking-widest uppercase border border-white/5">
+                      <span key={i} className="px-3 py-1 glass rounded-lg text-[8px] text-accent/60 font-black tracking-widest uppercase border border-white/10 group-hover:border-white/30 transition-colors">
                         {tag}
                       </span>
                     ))}
