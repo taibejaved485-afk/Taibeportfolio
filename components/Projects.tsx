@@ -31,6 +31,20 @@ const projects = [
     link: 'https://bridal-saloon.vercel.app'
   },
   {
+    title: 'MG DESIGN X',
+    category: 'Design Powerhouse',
+    image: 'https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&q=80&w=1200',
+    tags: ['Branding', 'Web Design'],
+    link: 'https://mgdesignx.com/'
+  },
+  {
+    title: 'TAIBE MART',
+    category: 'Commerce Nexus',
+    image: 'https://images.unsplash.com/photo-1557821552-17105176677c?auto=format&fit=crop&q=80&w=1200',
+    tags: ['E-Commerce', 'React'],
+    link: 'http://taibemart.infinityfreeapp.com/'
+  },
+  {
     title: 'MOTRAL STUDIO',
     category: 'Agency Interface',
     image: 'https://images.unsplash.com/photo-1497215728101-856f4ea42174?auto=format&fit=crop&q=80&w=1200',
