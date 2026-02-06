@@ -5,14 +5,14 @@ const projects = [
   {
     title: 'AHAD PORTFOLIO',
     category: 'Digital Identity',
-    image: 'https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&q=80&w=1200',
+    image: 'https://i.pinimg.com/736x/26/5c/43/265c43038b3303cd2d2a87590f8b36c6.jpg',
     tags: ['React', 'Tailwind'],
     link: 'https://ahadportfolio-inky.vercel.app'
   },
   {
     title: 'AHMAD PORTFOLIO',
     category: 'Creative Showcase',
-    image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=1200',
+    image: 'https://i.pinimg.com/736x/96/4d/36/964d3602afbd96c076f212275c2b5e00.jpg',
     tags: ['Next.js', 'Framer'],
     link: 'https://ahmadprotfolio.vercel.app'
   },
