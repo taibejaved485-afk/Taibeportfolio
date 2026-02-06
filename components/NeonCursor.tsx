@@ -53,14 +53,14 @@ export const NeonCursor: React.FC = () => {
 
   return (
     <div className="fixed inset-0 pointer-events-none z-[9999]">
-      {/* Primary Glow Tube */}
+      {/* Primary Gemini Glow Tube */}
       <div 
         className="absolute w-[2px] h-14 bg-primary rounded-full transition-opacity duration-300"
         style={{ 
           left: -1,
           top: -28,
           transform: `translate(${trail.x}px, ${trail.y}px) rotate(${angle}deg)`,
-          boxShadow: `0 0 15px #FB4EA0, 0 0 30px #FB4EA0`,
+          boxShadow: `0 0 18px var(--primary), 0 0 35px var(--primary)`,
           transformOrigin: 'center center',
           WebkitTransform: `translate(${trail.x}px, ${trail.y}px) rotate(${angle}deg)`,
         }}
@@ -68,7 +68,7 @@ export const NeonCursor: React.FC = () => {
 
       {/* Reactive Leading Particle */}
       <div 
-        className="absolute w-2 h-2 bg-sky rounded-full shadow-[0_0_15px #00F3FF, 0_0_30px #00F3FF]"
+        className="absolute w-2 h-2 bg-sky rounded-full shadow-[0_0_15px var(--sky), 0_0_30px var(--sky)]"
         style={{ 
           left: -1,
           top: -1,
@@ -78,7 +78,7 @@ export const NeonCursor: React.FC = () => {
       
       {/* Subtle trail effect */}
       <div 
-        className="absolute w-1 h-1 bg-secondary rounded-full opacity-40"
+        className="absolute w-1 h-1 bg-secondary rounded-full opacity-50"
         style={{ 
           left: -0.5,
           top: -0.5,

@@ -7,7 +7,7 @@
     <title>TAIBE | Next-Gen Digital Architect</title>
     
     <!-- Favicon: Futuristic 'T' Icon -->
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%23020617%22/><text x=%2250%%22 y=%2250%%22 dominant-baseline=%22central%22 text-anchor=%22middle%22 font-family=%22system-ui, sans-serif%22 font-weight=%22900%22 font-size=%2260%22 fill=%22%23FB4EA0%22>T</text></svg>">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%23020617%22/><text x=%2250%%22 y=%2250%%22 dominant-baseline=%22central%22 text-anchor=%22middle%22 font-family=%22system-ui, sans-serif%22 font-weight=%22900%22 font-size=%2260%22 fill=%22%238E75FF%22>T</text></svg>">
 
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -16,10 +16,10 @@
             theme: {
                 extend: {
                     colors: {
-                        primary: '#FB4EA0', // Pink
-                        secondary: '#3B82F6', // Blue
-                        sky: '#00F3FF', // Sky Blue
-                        darkBg: '#020617', // Deepest Navy
+                        primary: '#8E75FF', // Gemini Indigo/Purple
+                        secondary: '#4285F4', // Gemini Blue
+                        sky: '#00F1FF', // Gemini Cyan
+                        darkBg: '#05070A', // Deepest Obsidian
                         accent: '#F3EEF0',
                     },
                     fontFamily: {
@@ -33,6 +33,7 @@
                         'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
                         'scroll': 'scroll 40s linear infinite',
                         'glow-pulse': 'glow-pulse 3s ease-in-out infinite',
+                        'rotate-slow': 'rotate 6s linear infinite',
                     },
                     keyframes: {
                         mesh: {
@@ -43,6 +44,10 @@
                             '0%, 100%': { transform: 'translateY(0) rotate(0deg)' },
                             '50%': { transform: 'translateY(-30px) rotate(2deg)' },
                         },
+                        rotate: {
+                            '0%': { transform: 'rotate(0deg)' },
+                            '100%': { transform: 'rotate(360deg)' },
+                        },
                         reveal: {
                             '0%': { transform: 'translateY(100%)', opacity: 0 },
                             '100%': { transform: 'translateY(0)', opacity: 1 },
@@ -52,8 +57,8 @@
                             '100%': { transform: 'translateX(-50%)' },
                         },
                         'glow-pulse': {
-                            '0%, 100%': { opacity: 0.8, filter: 'brightness(1) blur(0px)' },
-                            '50%': { opacity: 1, filter: 'brightness(1.5) blur(2px)' },
+                            '0%, 100%': { opacity: 0.8, filter: 'brightness(1.2) blur(0px)' },
+                            '50%': { opacity: 1, filter: 'brightness(1.6) blur(3px)' },
                         }
                     }
                 }
@@ -62,10 +67,10 @@
     </script>
     <style>
         :root {
-            --primary: #FB4EA0;
-            --secondary: #3B82F6;
-            --sky: #00F3FF;
-            --darkBg: #020617;
+            --primary: #8E75FF;
+            --secondary: #4285F4;
+            --sky: #00F1FF;
+            --darkBg: #05070A;
         }
 
         body {
@@ -85,16 +90,57 @@
             height: 100%;
             pointer-events: none;
             z-index: 9999;
-            opacity: 0.04;
+            opacity: 0.05;
             background: url('https://grainy-gradients.vercel.app/noise.svg');
         }
 
         .glass {
-            background: rgba(255, 255, 255, 0.01);
-            backdrop-filter: blur(24px);
-            -webkit-backdrop-filter: blur(24px);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.8);
+            background: rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(24px) saturate(180%);
+            -webkit-backdrop-filter: blur(24px) saturate(180%);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Orb Border Effect */
+        .orb-border-wrap {
+            position: relative;
+            padding: 1px; /* The border width */
+            border-radius: inherit;
+            overflow: hidden;
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .orb-border-wrap::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: conic-gradient(
+                from 0deg,
+                transparent 0deg,
+                var(--primary) 60deg,
+                var(--secondary) 120deg,
+                var(--sky) 180deg,
+                transparent 240deg
+            );
+            animation: rotate 4s linear infinite;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .orb-border-wrap:hover::before {
+            opacity: 1;
+        }
+
+        .orb-inner {
+            position: relative;
+            z-index: 1;
+            background: var(--darkBg);
+            border-radius: inherit;
+            height: 100%;
+            width: 100%;
         }
 
         .mobile-slider {
@@ -113,7 +159,7 @@
         }
 
         .custom-scrollbar::-webkit-scrollbar {
-            width: 4px;
+            width: 5px;
         }
         .custom-scrollbar::-webkit-scrollbar-track {
             background: var(--darkBg);

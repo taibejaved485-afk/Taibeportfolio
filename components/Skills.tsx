@@ -33,54 +33,57 @@ const Icons = {
       <path d="M0 0v24h24V0H0zm8.932 16.295H7.014l-.531-1.612H4.128l-.531 1.612H1.673l2.844-8.086h2.15l2.265 6.447v1.639zM6.024 13.34l-.698-2.115-.698 2.115h1.396zm8.139 2.955h-1.516V8.632h1.516v7.663zm-1.516-9.157h1.516V5.454h-1.516v1.684z"/>
     </svg>
   ),
-  Canva: () => (
-    <svg viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6">
-      <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.182 14.856c-1.22.42-2.583.633-4.088.633-1.42 0-2.613-.243-3.58-.727-.723-.36-1.085-.823-1.085-1.39 0-.256.09-.49.271-.7.243-.274.55-.472.924-.596.536-.183 1.15-.274 1.843-.274h2.176c1.152 0 1.728-.27 1.728-.813 0-.173-.06-.313-.182-.422-.243-.223-.623-.335-1.141-.335-1.002 0-1.503.21-1.503.633h-2.13c0-1.01.69-1.515 2.07-1.515 1.545 0 2.318.526 2.318 1.577v3.313c0 .356.12.533.363.533.155 0 .232-.123.232-.37v-.704h1.794v.85c0 .644-.333.966-1.002.966-.185 0-.277.104-.277.311.002.321.18.481.536.481z"/>
-    </svg>
-  ),
 };
 
 const techIcons = [
-  { name: 'HTML', color: '#FB4EA0', delay: '0s', top: '10%', left: '5%', Icon: Icons.HTML },
-  { name: 'CSS', color: '#3B82F6', delay: '2s', top: '15%', left: '85%', Icon: Icons.CSS },
-  { name: 'JS', color: '#00F3FF', delay: '4s', top: '75%', left: '10%', Icon: Icons.JS },
-  { name: 'Python', color: '#FB4EA0', delay: '1s', top: '80%', left: '80%', Icon: Icons.Python },
-  { name: 'Photoshop', color: '#3B82F6', delay: '3s', top: '45%', left: '92%', Icon: Icons.Photoshop },
-  { name: 'Illustrator', color: '#00F3FF', delay: '5s', top: '25%', left: '15%', Icon: Icons.Illustrator },
+  { name: 'HTML', color: '#8E75FF', delay: '0s', top: '10%', left: '5%', Icon: Icons.HTML },
+  { name: 'CSS', color: '#4285F4', delay: '2s', top: '15%', left: '85%', Icon: Icons.CSS },
+  { name: 'JS', color: '#00F1FF', delay: '4s', top: '75%', left: '10%', Icon: Icons.JS },
+  { name: 'Python', color: '#8E75FF', delay: '1s', top: '80%', left: '80%', Icon: Icons.Python },
+  { name: 'Photoshop', color: '#4285F4', delay: '3s', top: '45%', left: '92%', Icon: Icons.Photoshop },
+  { name: 'Illustrator', color: '#00F1FF', delay: '5s', top: '25%', left: '15%', Icon: Icons.Illustrator },
 ];
 
 const skills = [
-  { name: 'Frontend Architecture', level: '95%', color: '#FB4EA0', icon: 'M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4' },
-  { name: 'Backend Engineering', level: '90%', color: '#3B82F6', icon: 'M5 12h14M5 12l4-4m-4 4l4 4' },
-  { name: 'Adobe Photoshop', level: '80%', color: '#00F3FF', icon: 'M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h14a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z' },
-  { name: 'Vector Mastery', level: '80%', color: '#FB4EA0', icon: 'M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17l.354-.354' },
-  { name: 'React Ecosystem', level: '98%', color: '#3B82F6', icon: 'M13 10V3L4 14h7v7l9-11h-7z' },
-  { name: 'Typed Systems', level: '85%', color: '#00F3FF', icon: 'M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z' },
-  { name: 'Node.js Core', level: '88%', color: '#FB4EA0', icon: 'M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z' },
-  { name: 'Interface Design', level: '92%', color: '#3B82F6', icon: 'M12 11c0 3.517-1.009 6.799-2.753 9.571m-3.44-2.04l.054-.09A10.003 10.003 0 013 12c0-3.683 1.998-6.9 5-8.583C10.832 1.888 19 1.6 19 1.6s.3 6.9-3.235 9.513a5.5 5.5 0 01-4.765-.513z' },
+  { name: 'Frontend Architecture', level: '95%', color: '#8E75FF', icon: 'M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4' },
+  { name: 'Backend Engineering', level: '90%', color: '#4285F4', icon: 'M5 12h14M5 12l4-4m-4 4l4 4' },
+  { name: 'Adobe Photoshop', level: '80%', color: '#00F1FF', icon: 'M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h14a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z' },
+  { name: 'Vector Mastery', level: '80%', color: '#8E75FF', icon: 'M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17l.354-.354' },
+  { name: 'React Ecosystem', level: '98%', color: '#4285F4', icon: 'M13 10V3L4 14h7v7l9-11h-7z' },
+  { name: 'Typed Systems', level: '85%', color: '#00F1FF', icon: 'M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z' },
+  { name: 'Node.js Core', level: '88%', color: '#8E75FF', icon: 'M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z' },
+  { name: 'Interface Design', level: '92%', color: '#4285F4', icon: 'M12 11c0 3.517-1.009 6.799-2.753 9.571m-3.44-2.04l.054-.09A10.003 10.003 0 013 12c0-3.683 1.998-6.9 5-8.583C10.832 1.888 19 1.6 19 1.6s.3 6.9-3.235 9.513a5.5 5.5 0 01-4.765-.513z' },
 ];
 
 const SkillCard: React.FC<{ skill: typeof skills[0] }> = ({ skill }) => (
-  <div className="w-[280px] sm:w-full p-8 glass border-white/5 rounded-[2rem] transition-all duration-500 mr-6 sm:mr-0 group">
-    <div 
-      className="w-14 h-14 rounded-2xl glass border border-white/10 flex items-center justify-center mb-8 relative"
-      style={{ boxShadow: `0 0 30px ${skill.color}55` }}
-    >
-      <div className="absolute inset-0 rounded-2xl animate-glow-pulse pointer-events-none" style={{ backgroundColor: `${skill.color}22` }}></div>
-      <svg className="w-7 h-7 relative z-10" fill="none" viewBox="0 0 24 24" stroke={skill.color}>
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d={skill.icon} />
-      </svg>
-    </div>
-    <h4 className="text-accent font-black text-lg mb-5 tracking-tight">{skill.name}</h4>
-    <div className="relative w-full h-1 bg-white/5 rounded-full overflow-hidden">
-      <div 
-        className="h-full" 
-        style={{ width: skill.level, backgroundColor: skill.color }}
-      ></div>
-    </div>
-    <div className="flex justify-between mt-3">
-      <span className="text-[9px] text-accent/20 uppercase font-black tracking-widest">Mastery</span>
-      <span className="text-[10px] font-black" style={{ color: skill.color }}>{skill.level}</span>
+  <div className="w-[280px] sm:w-full rounded-[2rem] group relative mr-6 sm:mr-0">
+    {/* Orb Border Wrapper */}
+    <div className="orb-border-wrap h-full rounded-[2rem]">
+      <div className="orb-inner h-full p-8 glass transition-all duration-500 hover:bg-white/[0.04]">
+        <div 
+          className="w-14 h-14 rounded-2xl glass border border-white/10 flex items-center justify-center mb-8 relative"
+          style={{ boxShadow: `0 0 30px ${skill.color}55` }}
+        >
+          <div className="absolute inset-0 rounded-2xl animate-glow-pulse pointer-events-none" style={{ backgroundColor: `${skill.color}22` }}></div>
+          <svg className="w-7 h-7 relative z-10" fill="none" viewBox="0 0 24 24" stroke={skill.color}>
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d={skill.icon} />
+          </svg>
+        </div>
+        <h4 className="text-accent font-black text-lg mb-5 tracking-tight">{skill.name}</h4>
+        <div className="relative w-full h-1 bg-white/5 rounded-full overflow-hidden">
+          <div 
+            className="h-full" 
+            style={{ width: skill.level, backgroundColor: skill.color }}
+          ></div>
+        </div>
+        <div className="flex justify-between mt-3">
+          <span className="text-[9px] text-accent/20 uppercase font-black tracking-widest">Mastery</span>
+          <span className="text-[10px] font-black" style={{ color: skill.color }}>{skill.level}</span>
+        </div>
+        
+        {/* Specular Highlight */}
+        <div className="absolute top-0 left-0 w-full h-1/2 bg-gradient-to-b from-white/[0.05] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+      </div>
     </div>
   </div>
 );

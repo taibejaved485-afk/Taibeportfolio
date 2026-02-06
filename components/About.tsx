@@ -32,19 +32,21 @@ export const About: React.FC = () => {
         <div className="flex flex-col lg:flex-row gap-20 items-center">
           <div className={`w-full lg:w-1/2 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-12'}`}>
             <div className="relative group">
-              {/* Main Image Card */}
-              <div className="aspect-[4/5] rounded-[3rem] overflow-hidden glass border-2 border-white/5 shadow-2xl transition-all duration-700 group-hover:rotate-1">
+              {/* Main Image Card with Orb style glass */}
+              <div className="aspect-[4/5] rounded-[3rem] overflow-hidden glass border-2 border-white/10 shadow-2xl transition-all duration-700 group-hover:rotate-1 bg-white/5">
                 <img 
                   src="https://i.pinimg.com/736x/a5/19/52/a51952b60084d169d7a1b51efd18c5d4.jpg" 
                   alt="Taibe Profile" 
                   className="w-full h-full object-cover grayscale transition-all duration-1000 group-hover:grayscale-0 group-hover:scale-110"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-darkBg via-transparent to-transparent opacity-80"></div>
+                {/* Specular highlight for glass orb look */}
+                <div className="absolute top-0 left-0 w-full h-1/2 bg-gradient-to-b from-white/5 to-transparent"></div>
               </div>
               
               {/* Floating Stat Card with Entrance Animation */}
               <div className={`absolute -bottom-10 -right-6 md:-right-10 transition-all duration-1000 delay-500 transform ${isVisible ? 'scale-100 opacity-100 translate-y-0' : 'scale-75 opacity-0 translate-y-10'}`}>
-                <div className="glass p-8 rounded-3xl border border-secondary/20 animate-float shadow-3xl backdrop-blur-2xl">
+                <div className="glass p-8 rounded-3xl border border-secondary/20 animate-float shadow-3xl backdrop-blur-3xl">
                   <div className="text-secondary text-5xl font-black font-heading mb-1 drop-shadow-glow">5+</div>
                   <div className="text-accent/40 text-[10px] font-black uppercase tracking-[0.3em]">Years of Evolution</div>
                 </div>
@@ -70,11 +72,11 @@ export const About: React.FC = () => {
             </p>
 
             <div className={`grid grid-cols-1 sm:grid-cols-2 gap-8 transition-all duration-1000 delay-500 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}>
-              <div className="p-8 rounded-[2.5rem] glass border-white/5 hover:bg-white/[0.03] transition-all group">
+              <div className="p-8 rounded-[2.5rem] glass border-white/5 hover:bg-white/[0.05] transition-all group">
                 <h4 className="text-primary font-black uppercase tracking-widest text-sm mb-3">Development</h4>
                 <p className="text-accent/40 text-xs leading-relaxed">Surgical precision with React, Node, and Python. Engineered for speed and scalability.</p>
               </div>
-              <div className="p-8 rounded-[2.5rem] glass border-white/5 hover:bg-white/[0.03] transition-all group">
+              <div className="p-8 rounded-[2.5rem] glass border-white/5 hover:bg-white/[0.05] transition-all group">
                 <h4 className="text-sky font-black uppercase tracking-widest text-sm mb-3">Design</h4>
                 <p className="text-accent/40 text-xs leading-relaxed">Vector mastery in Illustrator and pixel-perfect manipulation in Photoshop.</p>
               </div>
