@@ -33,8 +33,8 @@ export const NeonCursor: React.FC = () => {
         }
 
         return {
-          x: prev.x + dx * 0.12, // More lag for fluidity
-          y: prev.y + dy * 0.12,
+          x: prev.x + dx * 0.15, // Smooth lag
+          y: prev.y + dy * 0.15,
         };
       });
       requestRef.current = requestAnimationFrame(animate);
@@ -55,12 +55,12 @@ export const NeonCursor: React.FC = () => {
     <div className="fixed inset-0 pointer-events-none z-[9999]">
       {/* Primary Glow Tube */}
       <div 
-        className="absolute w-[2px] h-12 bg-primary rounded-full transition-opacity duration-300"
+        className="absolute w-[2px] h-14 bg-primary rounded-full transition-opacity duration-300"
         style={{ 
           left: -1,
-          top: -24,
+          top: -28,
           transform: `translate(${trail.x}px, ${trail.y}px) rotate(${angle}deg)`,
-          boxShadow: `0 0 15px #93229E, 0 0 40px #93229E`,
+          boxShadow: `0 0 15px #FB4EA0, 0 0 30px #FB4EA0`,
           transformOrigin: 'center center',
           WebkitTransform: `translate(${trail.x}px, ${trail.y}px) rotate(${angle}deg)`,
         }}
@@ -68,7 +68,7 @@ export const NeonCursor: React.FC = () => {
 
       {/* Reactive Leading Particle */}
       <div 
-        className="absolute w-2 h-2 bg-accent rounded-full shadow-[0_0_15px_#F3EEF0,0_0_30px_#F3EEF0]"
+        className="absolute w-2 h-2 bg-sky rounded-full shadow-[0_0_15px #00F3FF, 0_0_30px #00F3FF]"
         style={{ 
           left: -1,
           top: -1,
@@ -76,9 +76,9 @@ export const NeonCursor: React.FC = () => {
         }}
       ></div>
       
-      {/* Subtle secondary trail */}
+      {/* Subtle trail effect */}
       <div 
-        className="absolute w-1 h-1 bg-secondary rounded-full opacity-50"
+        className="absolute w-1 h-1 bg-secondary rounded-full opacity-40"
         style={{ 
           left: -0.5,
           top: -0.5,

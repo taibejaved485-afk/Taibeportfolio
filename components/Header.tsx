@@ -19,6 +19,7 @@ export const Header: React.FC<HeaderProps> = ({ scrolled }) => {
         
         <nav className="hidden md:flex items-center space-x-10 text-sm font-medium uppercase tracking-widest text-white/80">
           <a href="#about" className="hover:text-primary transition-colors">About</a>
+          <a href="#services" className="hover:text-primary transition-colors">Services</a>
           <a href="#skills" className="hover:text-primary transition-colors">Skills</a>
           <a href="#projects" className="hover:text-primary transition-colors">Projects</a>
           <a href="#contact" className="hover:text-primary transition-colors">Contact</a>

@@ -2,6 +2,8 @@
 import React, { useEffect, useState } from 'react';
 import { Hero } from './components/Hero';
 import { About } from './components/About';
+import { Services } from './components/Services';
+import { Partner } from './components/Partner';
 import { Skills } from './components/Skills';
 import { Projects } from './components/Projects';
 import { Footer } from './components/Footer';
@@ -29,6 +31,8 @@ const App: React.FC = () => {
       <main>
         <Hero />
         <About />
+        <Services />
+        <Partner />
         <Skills />
         <Projects />
       </main>

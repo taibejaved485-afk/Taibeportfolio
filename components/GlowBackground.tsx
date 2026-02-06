@@ -13,10 +13,10 @@ export const GlowBackground: React.FC = () => {
   }, []);
 
   return (
-    <div className="fixed inset-0 pointer-events-none z-[-1] overflow-hidden bg-darkBg">
+    <div className="fixed inset-0 pointer-events-none z-[-1] overflow-hidden bg-[#020617]">
       {/* Dynamic Interactive Glow */}
       <div 
-        className="absolute w-[800px] h-[800px] rounded-full opacity-[0.1] blur-[140px] bg-primary transition-transform duration-1000 ease-out"
+        className="absolute w-[800px] h-[800px] rounded-full opacity-[0.15] blur-[150px] bg-secondary transition-transform duration-1000 ease-out"
         style={{ 
           left: mousePos.x - 400, 
           top: mousePos.y - 400,
@@ -24,19 +24,20 @@ export const GlowBackground: React.FC = () => {
       ></div>
 
       {/* Layered Mesh Gradients */}
-      <div className="absolute -top-[20%] -left-[10%] w-[70%] h-[70%] bg-secondary/15 rounded-full blur-[180px] animate-mesh"></div>
-      <div className="absolute -bottom-[20%] -right-[10%] w-[70%] h-[70%] bg-primary/15 rounded-full blur-[180px] animate-mesh" style={{ animationDelay: '-5s' }}></div>
+      <div className="absolute -top-[20%] -left-[10%] w-[80%] h-[80%] bg-primary/10 rounded-full blur-[180px] animate-mesh"></div>
+      <div className="absolute top-[30%] -right-[10%] w-[60%] h-[60%] bg-sky/10 rounded-full blur-[180px] animate-mesh" style={{ animationDelay: '-7s' }}></div>
+      <div className="absolute -bottom-[20%] left-[20%] w-[70%] h-[70%] bg-secondary/10 rounded-full blur-[180px] animate-mesh" style={{ animationDelay: '-14s' }}></div>
       
       {/* Refined Grid Overlay */}
-      <div className="absolute inset-0 opacity-[0.03]" 
+      <div className="absolute inset-0 opacity-[0.05]" 
         style={{ 
           backgroundImage: `linear-gradient(#F3EEF0 1px, transparent 1px), linear-gradient(90deg, #F3EEF0 1px, transparent 1px)`, 
-          backgroundSize: '100px 100px' 
+          backgroundSize: '80px 80px' 
         }}
       ></div>
 
       {/* Radial Center Vignette */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,rgba(17,21,57,0.8)_100%)]"></div>
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,rgba(2,6,23,0.9)_100%)]"></div>
     </div>
   );
 };

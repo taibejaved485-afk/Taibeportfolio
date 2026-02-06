@@ -12,11 +12,11 @@
             theme: {
                 extend: {
                     colors: {
-                        primary: '#93229E', 
-                        secondary: '#E596D3', 
-                        accent: '#F3EEF0', 
-                        darkBg: '#111539', 
-                        neonCyan: '#00F3FF',
+                        primary: '#FB4EA0', // Pink
+                        secondary: '#3B82F6', // Blue
+                        sky: '#00F3FF', // Sky Blue
+                        darkBg: '#020617', // Deepest Navy
+                        accent: '#F3EEF0',
                     },
                     fontFamily: {
                         sans: ['Inter', 'sans-serif'],
@@ -27,6 +27,7 @@
                         'float': 'float 8s ease-in-out infinite',
                         'reveal': 'reveal 1.5s cubic-bezier(0.77, 0, 0.175, 1) forwards',
                         'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'scroll': 'scroll 40s linear infinite',
                     },
                     keyframes: {
                         mesh: {
@@ -40,6 +41,10 @@
                         reveal: {
                             '0%': { transform: 'translateY(100%)', opacity: 0 },
                             '100%': { transform: 'translateY(0)', opacity: 1 },
+                        },
+                        scroll: {
+                            '0%': { transform: 'translateX(0)' },
+                            '100%': { transform: 'translateX(-50%)' },
                         }
                     }
                 }
@@ -48,13 +53,14 @@
     </script>
     <style>
         :root {
-            --primary: #93229E;
-            --secondary: #E596D3;
-            --darkBg: #111539;
+            --primary: #FB4EA0;
+            --secondary: #3B82F6;
+            --sky: #00F3FF;
+            --darkBg: #020617;
         }
 
         body {
-            background-color: #111539;
+            background-color: var(--darkBg);
             color: #F3EEF0;
             overflow-x: hidden;
             scroll-behavior: smooth;
@@ -70,16 +76,16 @@
             height: 100%;
             pointer-events: none;
             z-index: 9999;
-            opacity: 0.05;
+            opacity: 0.04;
             background: url('https://grainy-gradients.vercel.app/noise.svg');
         }
 
         .glass {
-            background: rgba(243, 238, 240, 0.02);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(243, 238, 240, 0.05);
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+            background: rgba(255, 255, 255, 0.01);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.8);
         }
 
         .glow-border {
@@ -89,7 +95,7 @@
             content: '';
             position: absolute;
             inset: -1px;
-            background: linear-gradient(45deg, var(--primary), transparent, var(--secondary));
+            background: linear-gradient(45deg, var(--primary), var(--secondary), var(--sky));
             z-index: -1;
             border-radius: inherit;
             opacity: 0;
@@ -99,23 +105,19 @@
             opacity: 0.5;
         }
 
-        .parallax-wrap {
-            perspective: 1000px;
-        }
-
-        .reveal-text {
-            clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
-        }
-
         .custom-scrollbar::-webkit-scrollbar {
             width: 4px;
         }
         .custom-scrollbar::-webkit-scrollbar-track {
-            background: #111539;
+            background: var(--darkBg);
         }
         .custom-scrollbar::-webkit-scrollbar-thumb {
-            background: linear-gradient(to bottom, #93229E, #E596D3);
+            background: linear-gradient(to bottom, var(--primary), var(--secondary), var(--sky));
             border-radius: 10px;
+        }
+
+        .services-slider-container:hover .services-track {
+            animation-play-state: paused;
         }
 
         @media (max-width: 768px) {
