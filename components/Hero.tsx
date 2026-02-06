@@ -14,7 +14,7 @@ const FloatingIcon: React.FC<FloatingIconProps> = ({ children, className, delay,
     style={{ animationDelay: delay }}
   >
     <div 
-      className="p-3 glass rounded-xl border border-white/20 backdrop-blur-md transition-all duration-500 hover:scale-110"
+      className="p-3 glass rounded-xl border border-white/20 backdrop-blur-md transition-all duration-500 hover:scale-110 group cursor-default"
       style={{ 
         boxShadow: `0 0 20px ${glowColor}, inset 0 0 10px rgba(255,255,255,0.05)`,
         filter: `drop-shadow(0 0 8px ${glowColor})`
@@ -28,8 +28,7 @@ const FloatingIcon: React.FC<FloatingIconProps> = ({ children, className, delay,
 export const Hero: React.FC = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
-  const [btnPos, setBtnPos] = useState({ x: 0, y: 0 });
-  const ctaRef = useRef<HTMLAnchorElement>(null);
+  const [tilt, setTilt] = useState({ x: 0, y: 0 });
 
   useEffect(() => {
     setIsVisible(true);
@@ -37,124 +36,138 @@ export const Hero: React.FC = () => {
       const x = (e.clientX / window.innerWidth - 0.5) * 2;
       const y = (e.clientY / window.innerHeight - 0.5) * 2;
       setMousePos({ x, y });
-
-      if (ctaRef.current) {
-        const rect = ctaRef.current.getBoundingClientRect();
-        const centerX = rect.left + rect.width / 2;
-        const centerY = rect.top + rect.height / 2;
-        const dist = Math.hypot(e.clientX - centerX, e.clientY - centerY);
-        
-        if (dist < 120) {
-          setBtnPos({ x: (e.clientX - centerX) * 0.25, y: (e.clientY - centerY) * 0.25 });
-        } else {
-          setBtnPos({ x: 0, y: 0 });
-        }
-      }
+      
+      // Calculate tilt for the image card
+      setTilt({ x: x * 15, y: y * -15 });
     };
-
     window.addEventListener('mousemove', handleMouseMove);
     return () => window.removeEventListener('mousemove', handleMouseMove);
   }, []);
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20 px-6">
+    <section className="relative min-h-screen flex items-center overflow-hidden pt-32 pb-20 px-6 lg:px-20">
       {/* Dynamic Background Gradients */}
-      <div className="absolute inset-0 z-0 opacity-50">
-        <div className="absolute top-[10%] left-[5%] w-[50%] h-[50%] bg-primary/20 blur-[160px] animate-mesh rounded-full"></div>
-        <div className="absolute bottom-[10%] right-[5%] w-[50%] h-[50%] bg-secondary/20 blur-[160px] animate-mesh rounded-full" style={{ animationDelay: '-8s' }}></div>
+      <div className="absolute inset-0 z-0 opacity-40">
+        <div className="absolute top-[10%] left-[5%] w-[60%] h-[60%] bg-primary/20 blur-[180px] animate-mesh rounded-full"></div>
+        <div className="absolute bottom-[10%] right-[5%] w-[60%] h-[60%] bg-secondary/20 blur-[180px] animate-mesh rounded-full" style={{ animationDelay: '-10s' }}></div>
       </div>
 
-      <div className="container mx-auto z-10 grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
-        <div className={`transition-all duration-1000 ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
-          <div className="overflow-hidden mb-6">
-             <span className="inline-block px-4 py-1.5 rounded-full glass border border-primary/20 text-sky text-[10px] md:text-xs font-bold tracking-[0.4em] uppercase transform translate-y-full animate-reveal" style={{ animationDelay: '0.2s' }}>
-              Digital Architect & Visual Surgeon
+      <div className="container mx-auto z-10 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-center">
+        {/* Left Side: Content */}
+        <div className={`text-left transition-all duration-1000 ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'}`}>
+          <div className="overflow-hidden mb-8">
+             <span className="inline-block px-6 py-2 rounded-full glass border border-sky/20 text-sky text-[11px] md:text-xs font-black tracking-[0.5em] uppercase transform translate-y-full animate-reveal">
+              Next-Gen Digital Creator
             </span>
           </div>
           
-          <h1 className="font-heading text-6xl md:text-8xl lg:text-[9rem] font-black text-accent leading-[0.85] tracking-tighter mb-10">
-            <span className="block opacity-30 text-xl md:text-3xl lg:text-4xl tracking-[0.2em] transform -translate-x-5 mb-4 uppercase">
-              Web Developer
+          <h1 className="font-heading text-6xl md:text-8xl lg:text-[11rem] font-black text-accent leading-[0.8] tracking-tighter mb-10">
+            <span className="block opacity-40 text-xl md:text-3xl lg:text-4xl tracking-[0.3em] mb-4 uppercase">
+              Full Stack Developer
             </span>
             <span 
-              className="relative block text-transparent bg-clip-text bg-gradient-to-r from-primary via-secondary to-sky animate-gradient-x bg-[length:200%_200%] transition-all duration-500 ease-out py-8 px-2"
+              className="relative block text-transparent bg-clip-text bg-gradient-to-r from-primary via-secondary to-sky animate-gradient-x bg-[length:200%_200%] py-4"
               style={{
-                filter: `drop-shadow(${mousePos.x * -10}px ${mousePos.y * -10}px 30px rgba(59, 130, 246, 0.4))`,
-                transform: `perspective(1000px) rotateX(${mousePos.y * -8}deg) rotateY(${mousePos.x * 8}deg) translateZ(60px)`
+                filter: `drop-shadow(${mousePos.x * -10}px ${mousePos.y * -10}px 30px rgba(251, 78, 160, 0.4))`,
               }}
             >
               TAIBE
             </span>
           </h1>
 
-          <p className="max-w-xl text-accent/50 text-xl font-light leading-relaxed mb-16">
-            Engineered with <span className="text-primary italic font-medium">Full Stack</span> precision. 
-            Infused with <span className="text-secondary italic font-medium">Graphic Design</span> soul.
+          <p className="max-w-xl text-accent/60 text-lg md:text-2xl font-light leading-relaxed mb-16">
+            Architecting robust <span className="text-primary font-medium italic">Systems</span> and sculpting high-fidelity <span className="text-secondary font-medium italic">Visuals</span> for the digital elite.
           </p>
 
-          <div className="flex flex-col sm:flex-row items-start gap-6">
+          <div className="flex flex-col sm:flex-row items-center sm:justify-start gap-8">
             <a 
-              ref={ctaRef}
               href="#projects" 
-              className="group relative px-12 py-5 bg-gradient-to-r from-primary to-secondary text-accent font-black text-sm tracking-widest rounded-full overflow-hidden transition-all duration-300 shadow-[0_10px_40px_-10px_rgba(251,78,160,0.5)] active:scale-95"
-              style={{ transform: `translate(${btnPos.x}px, ${btnPos.y}px)` }}
+              className="group relative w-full sm:w-auto px-16 py-6 bg-gradient-to-r from-primary to-secondary text-accent font-black text-sm tracking-widest rounded-2xl overflow-hidden transition-all duration-300 shadow-[0_10px_40px_-10px_rgba(251,78,160,0.5)] active:scale-95 text-center"
             >
-              <span className="relative z-10 uppercase">Artifacts</span>
+              <span className="relative z-10 uppercase">View Artifacts</span>
               <div className="absolute inset-0 bg-white/20 transform -translate-x-full group-hover:translate-x-0 transition-transform duration-500"></div>
             </a>
             
             <a 
               href="#contact" 
-              className="px-12 py-5 glass border border-white/10 text-accent font-black text-sm tracking-widest rounded-full hover:bg-white/5 transition-all hover:border-white/30 uppercase"
+              className="w-full sm:w-auto px-16 py-6 glass border border-white/10 text-accent font-black text-sm tracking-widest rounded-2xl hover:bg-white/5 transition-all hover:border-white/30 uppercase text-center"
             >
-              Get In Touch
+              Contact Me
             </a>
           </div>
         </div>
 
-        <div className={`relative transition-all duration-1000 delay-500 transform ${isVisible ? 'translate-x-0 opacity-100' : 'translate-x-20 opacity-0'}`}>
-          <div className="parallax-wrap relative">
-            {/* Floating Icons with the new theme colors */}
-            <FloatingIcon className="-top-12 left-10" delay="0s" glowColor="rgba(251, 78, 160, 0.7)">
-              <svg className="w-6 h-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
-              </svg>
-            </FloatingIcon>
+        {/* Right Side: Image */}
+        <div className={`relative flex justify-center lg:justify-end transition-all duration-1000 delay-300 ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-10'}`}>
+          <div className="relative group">
+            {/* Massive Glowing Aura behind the image */}
+            <div className="absolute inset-[-40px] bg-gradient-to-r from-primary via-secondary to-sky rounded-[4rem] blur-[80px] opacity-30 group-hover:opacity-60 transition-opacity duration-1000 animate-pulse-slow"></div>
             
-            <FloatingIcon className="top-1/4 -right-14" delay="1s" glowColor="rgba(59, 130, 246, 0.7)">
-              <span className="text-secondary font-black text-xs tracking-tighter">JS</span>
-            </FloatingIcon>
-
-            <FloatingIcon className="bottom-1/4 -left-16" delay="2s" glowColor="rgba(0, 243, 255, 0.7)">
-              <svg className="w-6 h-6 text-sky" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h14a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-              </svg>
-            </FloatingIcon>
-
-            <FloatingIcon className="-bottom-10 right-14" delay="1.5s" glowColor="rgba(251, 78, 160, 0.7)">
-              <span className="text-primary font-black text-xs">{'<React />'}</span>
-            </FloatingIcon>
-
+            {/* Enormous Holographic Frame */}
             <div 
-              className="group relative z-10 aspect-square max-w-[500px] mx-auto rounded-[4rem] overflow-hidden border border-white/5 transition-all duration-700 shadow-3xl cursor-pointer"
-              style={{ transform: `rotateY(${mousePos.x * 12}deg) rotateX(${mousePos.y * -12}deg)` }}
+              className="relative w-[320px] h-[400px] md:w-[450px] md:h-[550px] lg:w-[500px] lg:h-[650px] rounded-[4rem] overflow-hidden glass border-2 border-white/20 shadow-[0_40px_100px_rgba(0,0,0,0.6)] transition-all duration-500 transform"
+              style={{ 
+                transform: `perspective(2000px) rotateY(${tilt.x}deg) rotateX(${tilt.y}deg)`,
+              }}
             >
               <img 
                 src="https://i.pinimg.com/736x/af/4d/a5/af4da5dd0b6e4f8b84928fa7d15b41ca.jpg" 
-                alt="Taibe Architecture" 
-                className="w-full h-full object-cover scale-110 grayscale transition-all duration-700 group-hover:grayscale-0 group-hover:scale-105"
+                alt="Taibe Profile" 
+                className="w-full h-full object-cover grayscale transition-all duration-1000 group-hover:grayscale-0 group-hover:scale-110"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-darkBg via-transparent to-transparent opacity-60"></div>
-              <div className="absolute inset-0 bg-secondary/10 opacity-0 group-hover:opacity-40 transition-opacity"></div>
+              
+              {/* Overlay Holographic Elements */}
+              <div className="absolute inset-0 pointer-events-none bg-gradient-to-tr from-primary/10 via-transparent to-sky/10 opacity-30"></div>
+              
+              {/* Scanlines Effect */}
+              <div className="absolute inset-0 pointer-events-none opacity-[0.15]" 
+                style={{ 
+                  backgroundImage: 'linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.4) 50%), linear-gradient(90deg, rgba(251, 78, 160, 0.1), rgba(0, 243, 255, 0.1), rgba(59, 130, 246, 0.1))',
+                  backgroundSize: '100% 6px, 4px 100%'
+                }}
+              ></div>
+
+              {/* Data Overlay */}
+              <div className="absolute top-8 left-8 flex flex-col gap-2">
+                <div className="px-3 py-1 glass rounded-lg border border-white/10 text-[9px] text-white/60 font-black uppercase tracking-[0.2em]">Subject: Taibe</div>
+                <div className="px-3 py-1 glass rounded-lg border border-white/10 text-[9px] text-white/60 font-black uppercase tracking-[0.2em]">Status: Evolution</div>
+              </div>
             </div>
-          </div>
-          
-          <div className="absolute -top-10 -left-10 p-5 glass rounded-2xl border-white/10 animate-float shadow-2xl hidden lg:block">
-            <div className="text-[9px] uppercase font-bold text-sky tracking-[0.3em] mb-1">Architecture // 01</div>
-            <div className="text-accent font-black text-xs uppercase">Quantum.V3</div>
+
+            {/* Floating Details around the image */}
+            <div className="absolute -top-10 -right-10 px-6 py-4 glass rounded-3xl border border-sky/40 text-sky font-black text-sm tracking-widest uppercase animate-float shadow-[0_0_30px_rgba(0,243,255,0.3)]">
+              Online // v3.1
+            </div>
+            
+            <div className="absolute -bottom-8 -left-8 px-8 py-6 glass rounded-3xl border border-primary/40 text-primary font-black text-xs tracking-[0.3em] uppercase animate-float" style={{ animationDelay: '1s' }}>
+              Level: Elite
+            </div>
           </div>
         </div>
       </div>
+
+      {/* Scattered Floating Tech Icons */}
+      <FloatingIcon className="top-[10%] left-[45%]" delay="0s" glowColor="rgba(251, 78, 160, 0.6)">
+        <span className="text-primary font-black text-xs uppercase">HTML</span>
+      </FloatingIcon>
+      <FloatingIcon className="top-[30%] left-[5%]" delay="1.5s" glowColor="rgba(59, 130, 246, 0.6)">
+        <span className="text-secondary font-black text-xs uppercase">CSS</span>
+      </FloatingIcon>
+      <FloatingIcon className="bottom-[15%] left-[40%]" delay="2.2s" glowColor="rgba(0, 243, 255, 0.6)">
+        <span className="text-sky font-black text-xs uppercase">JS</span>
+      </FloatingIcon>
+      <FloatingIcon className="top-[15%] right-[40%]" delay="0.8s" glowColor="rgba(251, 78, 160, 0.6)">
+        <span className="text-primary font-black text-xs uppercase">Python</span>
+      </FloatingIcon>
+      <FloatingIcon className="bottom-[45%] right-[5%]" delay="3s" glowColor="rgba(59, 130, 246, 0.6)">
+        <span className="text-secondary font-black text-xs uppercase">Ai</span>
+      </FloatingIcon>
+      <FloatingIcon className="top-[5%] right-[5%]" delay="1.2s" glowColor="rgba(0, 243, 255, 0.6)">
+        <span className="text-sky font-black text-xs uppercase">Ps</span>
+      </FloatingIcon>
+
+      {/* Global Background Bloom */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-secondary/5 rounded-full blur-[150px] pointer-events-none -z-10"></div>
     </section>
   );
 };
