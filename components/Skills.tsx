@@ -20,7 +20,7 @@ const Icons = {
   ),
   Python: () => (
     <svg viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6">
-      <path d="M11.927 0C5.352 0 5.603 2.852 5.603 2.852l.005 2.947h6.427V6.21h-8.99s-3.04 0-3.04 4.349c0 4.349 2.704 4.547 2.704 4.547h1.616v-2.285s-.174-2.731 2.742-2.731h6.392s2.671-.07 2.671-2.585V2.852S16.474 0 11.927 0zm-3.322 1.442a.91.91 0 110 1.82.91.91 0 010-1.82zM12.073 24c6.575 0 6.324-2.852 6.324-2.852l-.005-2.947h-6.427v-.411h8.99s3.04 0 3.04-4.349c0-4.349-2.704-4.547-2.704-4.547h-1.616v2.285s.174 2.731-2.742 2.731H10.54s-2.671.07-2.671 2.585V21.148S7.526 24 12.073 24zm3.322-1.442a.91.91 0 110-1.82.91.91 0 010-1.82z"/>
+      <path d="M11.927 0C5.352 0 5.603 2.852 5.603 2.852l.005 2.947h6.427V6.21h-8.99s-3.04 0-3.04 4.349c0 4.349 2.704 4.547 2.704 4.547h1.616v-2.285s-.174-2.731 2.742-2.731h6.392s2.671-.07 2.671-2.585V2.852S16.474 0 11.927 0zm-3.322 1.442a.91.91 0 110 1.82.91.91.0 010-1.82zM12.073 24c6.575 0 6.324-2.852 6.324-2.852l-.005-2.947h-6.427v-.411h8.99s3.04 0 3.04-4.349c0-4.349-2.704-4.547-2.704-4.547h-1.616v2.285s.174 2.731-2.742 2.731H10.54s-2.671.07-2.671 2.585V21.148S7.526 24 12.073 24zm3.322-1.442a.91.91 0 110-1.82.91.91.0 010-1.82z"/>
     </svg>
   ),
   Photoshop: () => (
@@ -87,7 +87,7 @@ const SkillCard: React.FC<{ skill: typeof skills[0] }> = ({ skill }) => (
 
 export const Skills: React.FC = () => {
   return (
-    <section id="skills" className="py-32 relative overflow-hidden">
+    <section id="skills" className="pt-32 pb-12 relative overflow-hidden">
       <div className="container mx-auto px-6 relative z-10">
         <div className="max-w-4xl mx-auto text-center mb-16 px-4">
           <div className="inline-block px-4 py-1 rounded-full glass border border-primary/20 mb-6">

@@ -87,7 +87,7 @@ const projects = [
 
 export const Projects: React.FC = () => {
   return (
-    <section id="projects" className="py-40 relative">
+    <section id="projects" className="pt-12 pb-32 relative">
       <div className="container mx-auto px-6">
         <div className="flex flex-col lg:flex-row justify-between items-start lg:items-end mb-20 md:mb-32 gap-10">
           <div className="max-w-2xl">
