@@ -1,25 +1,57 @@
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
+
+// SVG Icons as components for cleaner usage
+const Icons = {
+  HTML: () => (
+    <svg viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6">
+      <path d="M1.5 0h21l-1.91 21.563L11.977 24l-8.564-2.438L1.5 0zm7.031 9.75l-.232-2.718 10.059.003.23-2.622L5.412 4.41l.698 8.01h9.126l-.326 3.426-2.91.804-2.955-.81-.188-2.11H6.248l.33 4.171L12 19.351l5.379-1.443.744-8.157H8.531z"/>
+    </svg>
+  ),
+  CSS: () => (
+    <svg viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6">
+      <path d="M1.5 0h21l-1.91 21.563L11.977 24l-8.565-2.438L1.5 0zm5.09 8.77l.19 2.19h9.46l-.285 3.007-3.955 1.103-3.954-1.103-.256-2.659H5.214l.53 6.05 6.255 1.733 6.255-1.733.82-8.588H6.59zM5.8 5.45l.235 2.622h12.35l.235-2.622H5.8z"/>
+    </svg>
+  ),
+  JS: () => (
+    <svg viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6">
+      <path d="M0 0h24v24H0V0zm22.034 18.276c-.175-1.095-.888-2.015-3.003-2.873-.736-.345-1.554-.585-1.797-1.14-.091-.33-.105-.51-.105-.705 0-.525.21-.915.78-.915.585 0 .855.225 1.02.63.33.75 1.155.75 1.56.585.195-.105.3-.24.3-.54 0-1.29-1.23-1.755-2.385-1.755-1.335 0-2.43.6-2.43 2.1 0 .975.615 1.59 1.785 2.085.855.36 1.635.555 1.845 1.155.045.33.045.495.045.66 0 .87-.69 1.2-1.32 1.2-.825 0-1.26-.345-1.455-.945-.33-.735-1.185-.735-1.575-.585-.21.135-.315.33-.315.645 0 1.215 1 1.905 2.7 1.905 1.605 0 2.895-.735 2.895-2.475zm-11.231.258c-.195-.84-.57-1.305-1.335-1.305-.705 0-1.125.405-1.125.945 0 .915.51 1.185 1.23 1.32.33.075.645.15 1.14.225.81.12 1.74.315 1.74 1.815 0 1.755-1.395 2.31-3.135 2.31-1.605 0-2.79-.645-3.045-2.19-.105-.42-.51-.615-.81-.615-.285 0-.555.21-.555.585 0 .21.03.39.06.57.435 2.25 2.1 3.12 4.305 3.12 2.445 0 4.455-.855 4.455-3.48 0-1.545-.825-2.13-2.925-2.505z"/>
+    </svg>
+  ),
+  Python: () => (
+    <svg viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6">
+      <path d="M11.927 0C5.352 0 5.603 2.852 5.603 2.852l.005 2.947h6.427V6.21h-8.99s-3.04 0-3.04 4.349c0 4.349 2.704 4.547 2.704 4.547h1.616v-2.285s-.174-2.731 2.742-2.731h6.392s2.671-.07 2.671-2.585V2.852S16.474 0 11.927 0zm-3.322 1.442a.91.91 0 110 1.82.91.91 0 010-1.82zM12.073 24c6.575 0 6.324-2.852 6.324-2.852l-.005-2.947h-6.427v-.411h8.99s3.04 0 3.04-4.349c0-4.349-2.704-4.547-2.704-4.547h-1.616v2.285s.174 2.731-2.742 2.731H10.54s-2.671.07-2.671 2.585V21.148S7.526 24 12.073 24zm3.322-1.442a.91.91 0 110-1.82.91.91 0 010-1.82z"/>
+    </svg>
+  ),
+  Photoshop: () => (
+    <svg viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6">
+      <path d="M0 0v24h24V0H0zm9.356 16.295H7.728v-4.144H6.234V10.74h4.634v1.411H9.356v4.144zm5.552-2.565c0 .641-.186 1.16-.557 1.556-.371.396-.893.593-1.564.593-.243 0-.466-.026-.67-.078v1.314H10.61V8.657c.481-.076.994-.114 1.539-.114 1.002 0 1.769.191 2.3.573.531.382.797.973.797 1.774 0 .399-.074.743-.223 1.033a2.215 2.215 0 01-.615.807zm-2.791-2.483v1.896c.143.051.311.076.505.076.315 0 .565-.084.749-.253.184-.168.276-.438.276-.81 0-.301-.08-.535-.241-.703s-.404-.251-.727-.251c-.19 0-.376.015-.562.045z"/>
+    </svg>
+  ),
+  Illustrator: () => (
+    <svg viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6">
+      <path d="M0 0v24h24V0H0zm8.932 16.295H7.014l-.531-1.612H4.128l-.531 1.612H1.673l2.844-8.086h2.15l2.265 6.447v1.639zM6.024 13.34l-.698-2.115-.698 2.115h1.396zm8.139 2.955h-1.516V8.632h1.516v7.663zm-1.516-9.157h1.516V5.454h-1.516v1.684z"/>
+    </svg>
+  ),
+  Canva: () => (
+    <svg viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6">
+      <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.182 14.856c-1.22.42-2.583.633-4.088.633-1.42 0-2.613-.243-3.58-.727-.723-.36-1.085-.823-1.085-1.39 0-.256.09-.49.271-.7.243-.274.55-.472.924-.596.536-.183 1.15-.274 1.843-.274h2.176c1.152 0 1.728-.27 1.728-.813 0-.173-.06-.313-.182-.422-.243-.223-.623-.335-1.141-.335-1.002 0-1.503.21-1.503.633h-2.13c0-1.01.69-1.515 2.07-1.515 1.545 0 2.318.526 2.318 1.577v3.313c0 .356.12.533.363.533.155 0 .232-.123.232-.37v-.704h1.794v.85c0 .644-.333.966-1.002.966-.185 0-.277.104-.277.311.002.321.18.481.536.481z"/>
+    </svg>
+  ),
+};
 
 const techIcons = [
-  { name: 'HTML', color: '#FB4EA0', delay: '0s', top: '10%', left: '5%' },
-  { name: 'CSS', color: '#3B82F6', delay: '2s', top: '15%', left: '85%' },
-  { name: 'JS', color: '#00F3FF', delay: '4s', top: '75%', left: '10%' },
-  { name: 'Python', color: '#FB4EA0', delay: '1s', top: '80%', left: '80%' },
-  { name: 'React', color: '#3B82F6', delay: '3s', top: '45%', left: '92%' },
-  { name: 'Node', color: '#00F3FF', delay: '5s', top: '25%', left: '15%' },
-];
-
-const designIcons = [
-  { name: 'Ps', color: '#FB4EA0', delay: '1.5s', top: '12%', left: '45%' },
-  { name: 'Ai', color: '#3B82F6', delay: '3.5s', top: '85%', left: '55%' },
-  { name: 'Canva', color: '#00F3FF', delay: '2.5s', top: '50%', left: '5%' },
-  { name: 'Figma', color: '#FB4EA0', delay: '0.5s', top: '35%', left: '75%' },
+  { name: 'HTML', color: '#FB4EA0', delay: '0s', top: '10%', left: '5%', Icon: Icons.HTML },
+  { name: 'CSS', color: '#3B82F6', delay: '2s', top: '15%', left: '85%', Icon: Icons.CSS },
+  { name: 'JS', color: '#00F3FF', delay: '4s', top: '75%', left: '10%', Icon: Icons.JS },
+  { name: 'Python', color: '#FB4EA0', delay: '1s', top: '80%', left: '80%', Icon: Icons.Python },
+  { name: 'Photoshop', color: '#3B82F6', delay: '3s', top: '45%', left: '92%', Icon: Icons.Photoshop },
+  { name: 'Illustrator', color: '#00F3FF', delay: '5s', top: '25%', left: '15%', Icon: Icons.Illustrator },
 ];
 
 const SkillParticle: React.FC<{ icon: typeof techIcons[0] }> = ({ icon }) => (
   <div 
-    className="absolute pointer-events-none animate-float opacity-30 hover:opacity-100 transition-opacity duration-500"
+    className="absolute pointer-events-none animate-float opacity-20 hover:opacity-100 transition-opacity duration-500"
     style={{ 
       top: icon.top, 
       left: icon.left, 
@@ -27,14 +59,13 @@ const SkillParticle: React.FC<{ icon: typeof techIcons[0] }> = ({ icon }) => (
     }}
   >
     <div 
-      className="px-4 py-2 glass rounded-lg border border-white/10 flex items-center justify-center font-black text-[10px] tracking-tighter"
+      className="w-16 h-16 glass rounded-2xl border border-white/10 flex items-center justify-center group-hover:scale-125 transition-transform"
       style={{ 
         color: icon.color,
-        boxShadow: `0 0 15px ${icon.color}33`,
-        textShadow: `0 0 5px ${icon.color}`
+        boxShadow: `0 0 30px ${icon.color}33`,
       }}
     >
-      {icon.name}
+      <icon.Icon />
     </div>
   </div>
 );
@@ -101,13 +132,13 @@ const SkillCard: React.FC<{ skill: typeof skills[0] }> = ({ skill }) => {
 export const Skills: React.FC = () => {
   return (
     <section id="skills" className="py-32 relative overflow-hidden">
+      {/* Background Animated Particles */}
       <div className="absolute inset-0 z-0">
         {techIcons.map((icon, idx) => <SkillParticle key={`tech-${idx}`} icon={icon} />)}
-        {designIcons.map((icon, idx) => <SkillParticle key={`design-${idx}`} icon={icon} />)}
       </div>
 
       <div className="container mx-auto px-6 relative z-10">
-        <div className="max-w-4xl mx-auto text-center mb-24">
+        <div className="max-w-4xl mx-auto text-center mb-16">
           <div className="inline-block px-4 py-1 rounded-full glass border border-primary/20 mb-6">
             <h2 className="text-[10px] font-black text-primary tracking-[0.4em] uppercase">Technological Arsenal</h2>
           </div>
@@ -118,6 +149,33 @@ export const Skills: React.FC = () => {
           <p className="mt-8 text-accent/40 max-w-2xl mx-auto text-lg font-light italic">
             "Merging the logic of Python and JavaScript with the aesthetics of Photoshop and Illustrator."
           </p>
+        </div>
+
+        {/* Core Stack Sliding Marquee */}
+        <div className="relative w-full overflow-hidden py-12 mb-24">
+          <div className="flex animate-scroll whitespace-nowrap gap-8 w-fit">
+            {[...techIcons, ...techIcons].map((item, idx) => (
+              <div 
+                key={idx}
+                className="inline-flex items-center gap-4 px-10 py-6 glass rounded-3xl border border-white/5 group transition-all duration-500 hover:border-white/20"
+              >
+                <div 
+                  className="p-3 rounded-xl bg-white/5 group-hover:scale-110 transition-transform duration-500"
+                  style={{ 
+                    color: item.color,
+                    filter: `drop-shadow(0 0 8px ${item.color}88)`
+                  }}
+                >
+                  <item.Icon />
+                </div>
+                <span className="text-xl font-black text-white/40 group-hover:text-white transition-colors tracking-tighter uppercase">
+                  {item.name}
+                </span>
+              </div>
+            ))}
+          </div>
+          <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-darkBg to-transparent z-10"></div>
+          <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-darkBg to-transparent z-10"></div>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">

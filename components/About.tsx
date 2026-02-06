@@ -1,12 +1,36 @@
 
-import React from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 
 export const About: React.FC = () => {
+  const [isVisible, setIsVisible] = useState(false);
+  const sectionRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+        }
+      },
+      { threshold: 0.15 }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => {
+      if (sectionRef.current) {
+        observer.unobserve(sectionRef.current);
+      }
+    };
+  }, []);
+
   return (
-    <section id="about" className="py-24 md:py-32 relative overflow-hidden">
+    <section ref={sectionRef} id="about" className="py-24 md:py-32 relative overflow-hidden">
       <div className="container mx-auto px-6">
         <div className="flex flex-col lg:flex-row gap-20 items-center">
-          <div className="w-full lg:w-1/2">
+          <div className={`w-full lg:w-1/2 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-12'}`}>
             <div className="relative group">
               {/* Main Image Card */}
               <div className="aspect-[4/5] rounded-[3rem] overflow-hidden glass border-2 border-white/5 shadow-2xl transition-all duration-700 group-hover:rotate-1">
@@ -30,20 +54,20 @@ export const About: React.FC = () => {
           </div>
 
           <div className="w-full lg:w-1/2">
-            <div className="inline-block px-4 py-1.5 glass rounded-full border border-primary/20 text-primary text-[10px] font-black uppercase tracking-[0.4em] mb-6">
+            <div className={`inline-block px-4 py-1.5 glass rounded-full border border-primary/20 text-primary text-[10px] font-black uppercase tracking-[0.4em] mb-6 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
               The Identity
             </div>
-            <h3 className="text-5xl md:text-7xl font-heading font-black text-accent mb-10 leading-[0.9]">
+            <h3 className={`text-5xl md:text-7xl font-heading font-black text-accent mb-10 leading-[0.9] transition-all duration-700 delay-100 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
               Merging Code <br /> With <span className="text-transparent bg-clip-text bg-gradient-to-r from-secondary to-sky">High-Fidelity</span> Design
             </h3>
             
-            <p className="text-accent/60 text-xl leading-relaxed mb-12 font-light">
+            <p className={`text-accent/60 text-xl leading-relaxed mb-12 font-light transition-all duration-1000 delay-300 transform ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-12 opacity-0'}`}>
               I am Taibe, a digital architect specializing in the convergence of logic and aesthetics. 
               By combining high-performance <span className="text-accent font-bold">Full-Stack Engineering</span> with elite <span className="text-accent font-bold">Graphic Design</span>, 
               I build immersive environments that don't just function—they resonate.
             </p>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
+            <div className={`grid grid-cols-1 sm:grid-cols-2 gap-8 transition-all duration-1000 delay-500 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}>
               <div className="p-8 rounded-[2.5rem] glass border-white/5 hover:bg-white/[0.03] transition-all group">
                 <h4 className="text-primary font-black uppercase tracking-widest text-sm mb-3">Development</h4>
                 <p className="text-accent/40 text-xs leading-relaxed">Surgical precision with React, Node, and Python. Engineered for speed and scalability.</p>
