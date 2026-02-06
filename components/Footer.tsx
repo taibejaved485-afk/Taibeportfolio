@@ -10,6 +10,12 @@ export const Footer: React.FC = () => {
   
   const email = "taibejaved485@gmail.com";
 
+  // INSTRUCTIONS: 
+  // 1. Register at https://formspree.io/
+  // 2. Create a form and get your Form ID.
+  // 3. Replace 'YOUR_FORMSPREE_ID' with your actual ID below.
+  const FORMSPREE_ID = 'YOUR_FORMSPREE_ID'; 
+
   const copyToClipboard = () => {
     navigator.clipboard.writeText(email);
     setCopied(true);
@@ -35,24 +41,40 @@ export const Footer: React.FC = () => {
     if (!validate()) return;
 
     setIsSubmitting(true);
-    // Simulate API transmission
-    await new Promise(resolve => setTimeout(resolve, 2000));
     
-    setIsSubmitting(false);
-    setIsSuccess(true);
-    setFormState({ name: '', email: '', message: '' });
-    
-    setTimeout(() => setIsSuccess(false), 5000);
+    try {
+      const response = await fetch(`https://formspree.io/f/${FORMSPREE_ID}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify(formState)
+      });
+
+      if (response.ok) {
+        setIsSuccess(true);
+        setFormState({ name: '', email: '', message: '' });
+      } else {
+        const data = await response.json();
+        setErrors({ submit: data.error || 'Transmission failed. Check Formspree ID.' });
+      }
+    } catch (error) {
+      setErrors({ submit: 'Network error. Transmission intercepted.' });
+    } finally {
+      setIsSubmitting(false);
+      setTimeout(() => setIsSuccess(false), 5000);
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormState(prev => ({ ...prev, [name]: value }));
-    // Clear error when user starts typing
-    if (errors[name]) {
+    if (errors[name] || errors.submit) {
       setErrors(prev => {
         const newErrs = { ...prev };
         delete newErrs[name];
+        delete newErrs.submit;
         return newErrs;
       });
     }
@@ -175,6 +197,12 @@ export const Footer: React.FC = () => {
                   ></textarea>
                   {errors.message && <p className="text-[10px] text-primary font-bold ml-2 animate-pulse uppercase tracking-wider">{errors.message}</p>}
                 </div>
+
+                {errors.submit && (
+                  <div className="p-4 rounded-2xl bg-primary/10 border border-primary/20 text-primary text-[10px] font-bold uppercase tracking-widest text-center animate-pulse">
+                    {errors.submit}
+                  </div>
+                )}
 
                 <button 
                   type="submit"

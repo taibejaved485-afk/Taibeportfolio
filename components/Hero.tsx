@@ -87,13 +87,13 @@ export const Hero: React.FC = () => {
       <div className="container mx-auto z-10 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-center">
         {/* Left Side: Content */}
         <div className={`text-left transition-all duration-1000 ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'}`}>
-          <div className="overflow-hidden mb-8">
+          <div className="overflow-hidden mb-8 lg:block hidden">
              <span className="inline-block px-6 py-2 rounded-full glass border border-sky/20 text-sky text-[11px] md:text-xs font-black tracking-[0.5em] uppercase transform translate-y-full animate-reveal">
               Next-Gen Digital Creator
             </span>
           </div>
           
-          <h1 className="font-heading text-5xl md:text-8xl lg:text-[11rem] font-black text-accent leading-[0.85] tracking-tighter mb-10">
+          <h1 className="hidden lg:block font-heading text-5xl md:text-8xl lg:text-[11rem] font-black text-accent leading-[0.85] tracking-tighter mb-10">
             <span className="block opacity-40 text-lg md:text-3xl lg:text-4xl tracking-[0.3em] mb-4 uppercase">
               Full Stack Developer
             </span>
@@ -104,14 +104,26 @@ export const Hero: React.FC = () => {
               }}
             >
               TAIBE
+              
+              {/* Reactive Animated Underline */}
+              <div 
+                className="absolute bottom-2 left-0 w-full h-[4px] bg-gradient-to-r from-primary via-secondary to-sky rounded-full transition-transform duration-300 ease-out overflow-hidden"
+                style={{
+                  transform: `translateX(${mousePos.x * 20}px) scaleX(${1 + Math.abs(mousePos.x) * 0.2})`,
+                  filter: `blur(${1 + Math.abs(mousePos.x) * 3}px) drop-shadow(0 0 15px rgba(251, 78, 160, 0.6))`,
+                  opacity: 0.5 + Math.abs(mousePos.y) * 0.3
+                }}
+              >
+                <div className="absolute inset-0 bg-white/30 animate-pulse"></div>
+              </div>
             </span>
           </h1>
 
-          <p className="max-w-xl text-accent/60 text-lg md:text-2xl font-light leading-relaxed mb-16">
+          <p className="max-w-xl text-accent/60 text-lg md:text-2xl font-light leading-relaxed mb-16 lg:block hidden">
             Architecting robust <span className="text-primary font-medium italic">Systems</span> and sculpting high-fidelity <span className="text-secondary font-medium italic">Visuals</span> for the digital elite.
           </p>
 
-          <div className="flex flex-col sm:flex-row items-center sm:justify-start gap-8">
+          <div className="hidden lg:flex flex-col sm:flex-row items-center sm:justify-start gap-8">
             <a 
               href="#projects" 
               className="group relative w-full sm:w-auto px-16 py-6 bg-gradient-to-r from-primary to-secondary text-accent font-black text-sm tracking-widest rounded-2xl overflow-hidden transition-all duration-300 shadow-[0_10px_40px_-10px_rgba(251,78,160,0.5)] active:scale-95 text-center"
@@ -142,11 +154,11 @@ export const Hero: React.FC = () => {
             <OrbitIcon Icon={HeroIcons.Canva} color="#00F3FF" delay="2.8s" pos="-top-4 right-1/4" />
 
             {/* Massive Glowing Aura behind the image */}
-            <div className="absolute inset-[-20px] bg-gradient-to-r from-primary via-secondary to-sky rounded-[4rem] blur-[100px] opacity-20 group-hover:opacity-60 transition-opacity duration-1000 animate-pulse-slow"></div>
+            <div className="absolute inset-[-20px] bg-gradient-to-r from-primary via-secondary to-sky rounded-full lg:rounded-[4rem] blur-[100px] opacity-20 group-hover:opacity-60 transition-opacity duration-1000 animate-pulse-slow"></div>
             
             {/* Profile Frame */}
             <div 
-              className="relative w-[300px] h-[380px] md:w-[450px] md:h-[550px] lg:w-[480px] lg:h-[620px] rounded-[3.5rem] overflow-hidden glass border-2 border-white/20 shadow-[0_40px_100px_rgba(0,0,0,0.6)] transition-all duration-700 transform"
+              className="relative w-[280px] h-[280px] md:w-[450px] md:h-[550px] lg:w-[480px] lg:h-[620px] rounded-full lg:rounded-[3.5rem] overflow-hidden glass border-2 border-white/20 shadow-[0_40px_100px_rgba(0,0,0,0.6)] transition-all duration-700 transform"
               style={{ 
                 transform: `perspective(2000px) rotateY(${tilt.x}deg) rotateX(${tilt.y}deg)`,
               }}
