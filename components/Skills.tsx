@@ -61,12 +61,13 @@ const skills = [
 ];
 
 const SkillCard: React.FC<{ skill: typeof skills[0] }> = ({ skill }) => (
-  <div className="w-[280px] sm:w-full p-8 glass border-white/5 rounded-[2rem] transition-all duration-500 mr-6 sm:mr-0">
+  <div className="w-[280px] sm:w-full p-8 glass border-white/5 rounded-[2rem] transition-all duration-500 mr-6 sm:mr-0 group">
     <div 
-      className="w-14 h-14 rounded-2xl glass border border-white/10 flex items-center justify-center mb-8"
-      style={{ boxShadow: `0 0 20px ${skill.color}33` }}
+      className="w-14 h-14 rounded-2xl glass border border-white/10 flex items-center justify-center mb-8 relative"
+      style={{ boxShadow: `0 0 30px ${skill.color}55` }}
     >
-      <svg className="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke={skill.color}>
+      <div className="absolute inset-0 rounded-2xl animate-glow-pulse pointer-events-none" style={{ backgroundColor: `${skill.color}22` }}></div>
+      <svg className="w-7 h-7 relative z-10" fill="none" viewBox="0 0 24 24" stroke={skill.color}>
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d={skill.icon} />
       </svg>
     </div>
@@ -101,14 +102,18 @@ export const Skills: React.FC = () => {
         <div className="relative w-full overflow-hidden py-12 mb-12">
           <div className="flex animate-scroll whitespace-nowrap gap-8 w-fit">
             {[...techIcons, ...techIcons].map((item, idx) => (
-              <div key={idx} className="inline-flex items-center gap-4 px-10 py-6 glass rounded-3xl border border-white/5 group">
+              <div key={idx} className="inline-flex items-center gap-4 px-10 py-6 glass rounded-3xl border border-white/5 group relative">
                 <div 
-                  className="p-3 rounded-xl bg-white/5"
-                  style={{ color: item.color, filter: `drop-shadow(0 0 8px ${item.color}88)` }}
+                  className="p-3 rounded-xl bg-white/5 relative"
+                  style={{ 
+                    color: item.color, 
+                    filter: `drop-shadow(0 0 15px ${item.color}cc)` 
+                  }}
                 >
+                  <div className="absolute inset-0 rounded-xl animate-glow-pulse opacity-40 pointer-events-none" style={{ backgroundColor: `${item.color}33` }}></div>
                   <item.Icon />
                 </div>
-                <span className="text-xl font-black text-white/40 group-hover:text-white transition-colors uppercase">
+                <span className="text-xl font-black text-white/40 group-hover:text-white transition-colors uppercase relative z-10">
                   {item.name}
                 </span>
               </div>

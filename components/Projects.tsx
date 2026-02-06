@@ -3,28 +3,53 @@ import React from 'react';
 
 const projects = [
   {
-    title: 'XENON CORE',
-    category: 'Full Stack Engine',
-    image: 'https://images.unsplash.com/photo-1614850523296-d8c1af93d400?auto=format&fit=crop&q=80&w=1200',
-    tags: ['React', 'Web3']
+    title: 'AHAD PORTFOLIO',
+    category: 'Digital Identity',
+    image: 'https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&q=80&w=1200',
+    tags: ['React', 'Tailwind'],
+    link: 'https://ahadportfolio-inky.vercel.app'
   },
   {
-    title: 'CYBER BRANDING',
-    category: 'Aesthetic Identity',
-    image: 'https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&q=80&w=1200',
-    tags: ['AI', 'Illustrator']
+    title: 'AHMAD PORTFOLIO',
+    category: 'Creative Showcase',
+    image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=1200',
+    tags: ['Next.js', 'Framer'],
+    link: 'https://ahmadprotfolio.vercel.app'
   },
   {
-    title: 'NEON DASHBOARD',
-    category: 'Visualization',
-    image: 'https://images.unsplash.com/photo-1558591710-4b4a1ae0f04d?auto=format&fit=crop&q=80&w=1200',
-    tags: ['Next.js', 'D3.js']
+    title: 'TECHSKOOP',
+    category: 'Tech Platform',
+    image: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&q=80&w=1200',
+    tags: ['Full Stack', 'Cloud'],
+    link: 'https://techskoop.vercel.app'
   },
   {
-    title: 'QUANTUM UI',
-    category: 'Design System',
-    image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=1200',
-    tags: ['Figma', 'Tokens']
+    title: 'BRIDAL SALOON',
+    category: 'Luxury E-Commerce',
+    image: 'https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&q=80&w=1200',
+    tags: ['UI/UX', 'Styling'],
+    link: 'https://bridal-saloon.vercel.app'
+  },
+  {
+    title: 'MOTRAL STUDIO',
+    category: 'Agency Interface',
+    image: 'https://images.unsplash.com/photo-1497215728101-856f4ea42174?auto=format&fit=crop&q=80&w=1200',
+    tags: ['Web Design', 'Branding'],
+    link: 'https://motral-web-studio.vercel.app'
+  },
+  {
+    title: 'MOTRAL PARTICLES',
+    category: 'Visual Experiment',
+    image: 'https://images.unsplash.com/photo-1633356122544-f134324a6cee?auto=format&fit=crop&q=80&w=1200',
+    tags: ['Three.js', 'Canvas'],
+    link: 'https://motralparticles.vercel.app'
+  },
+  {
+    title: 'PIZZA HUT MUREX',
+    category: 'Food Interface',
+    image: 'https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&q=80&w=1200',
+    tags: ['React', 'System Design'],
+    link: 'https://pizza-hut-murex.vercel.app'
   }
 ];
 
@@ -44,7 +69,13 @@ export const Projects: React.FC = () => {
 
         <div className="mobile-slider lg:grid lg:grid-cols-2 gap-16 pb-12">
           {projects.map((project, index) => (
-            <div key={index} className="w-[85vw] lg:w-full group relative cursor-pointer mr-8 lg:mr-0">
+            <a 
+              key={index} 
+              href={project.link} 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="w-[85vw] lg:w-full group relative cursor-pointer mr-8 lg:mr-0 block"
+            >
               <div className="relative aspect-[16/11] rounded-[2.5rem] md:rounded-[3.5rem] overflow-hidden bg-darkBg border border-white/5 transition-transform duration-700 hover:scale-[0.98]">
                 <img 
                   src={project.image} 
@@ -68,8 +99,15 @@ export const Projects: React.FC = () => {
                     ))}
                   </div>
                 </div>
+                
+                {/* External Link Indicator */}
+                <div className="absolute top-8 right-8 w-12 h-12 glass border border-white/10 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity translate-y-4 group-hover:translate-y-0 duration-500">
+                  <svg className="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                  </svg>
+                </div>
               </div>
-            </div>
+            </a>
           ))}
         </div>
         

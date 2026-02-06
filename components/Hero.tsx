@@ -46,13 +46,14 @@ const OrbitIcon: React.FC<{ Icon: React.FC; color: string; delay: string; pos: s
     style={{ animationDelay: delay }}
   >
     <div 
-      className="p-3 glass rounded-xl border border-white/20 flex items-center justify-center transition-all duration-500 scale-90 group-hover:scale-100"
+      className="p-3 glass rounded-xl border border-white/20 flex items-center justify-center transition-all duration-500 scale-90 group-hover:scale-100 relative"
       style={{ 
         color,
-        boxShadow: `0 0 20px ${color}66, inset 0 0 10px rgba(255,255,255,0.05)`,
-        filter: `drop-shadow(0 0 5px ${color})`
+        boxShadow: `0 0 30px ${color}88, inset 0 0 15px rgba(255,255,255,0.1)`,
+        filter: `drop-shadow(0 0 10px ${color})`
       }}
     >
+      <div className="absolute inset-0 rounded-xl animate-glow-pulse pointer-events-none" style={{ backgroundColor: `${color}11` }}></div>
       <Icon />
     </div>
   </div>

@@ -42,10 +42,12 @@ export const About: React.FC = () => {
                 <div className="absolute inset-0 bg-gradient-to-t from-darkBg via-transparent to-transparent opacity-80"></div>
               </div>
               
-              {/* Floating Stat Card */}
-              <div className="absolute -bottom-10 -right-6 md:-right-10 glass p-8 rounded-3xl border border-secondary/20 animate-float shadow-3xl backdrop-blur-2xl">
-                <div className="text-secondary text-5xl font-black font-heading mb-1 drop-shadow-glow">5+</div>
-                <div className="text-accent/40 text-[10px] font-black uppercase tracking-[0.3em]">Years of Evolution</div>
+              {/* Floating Stat Card with Entrance Animation */}
+              <div className={`absolute -bottom-10 -right-6 md:-right-10 transition-all duration-1000 delay-500 transform ${isVisible ? 'scale-100 opacity-100 translate-y-0' : 'scale-75 opacity-0 translate-y-10'}`}>
+                <div className="glass p-8 rounded-3xl border border-secondary/20 animate-float shadow-3xl backdrop-blur-2xl">
+                  <div className="text-secondary text-5xl font-black font-heading mb-1 drop-shadow-glow">5+</div>
+                  <div className="text-accent/40 text-[10px] font-black uppercase tracking-[0.3em]">Years of Evolution</div>
+                </div>
               </div>
 
               {/* Decorative Glow */}
