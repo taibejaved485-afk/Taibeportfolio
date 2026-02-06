@@ -1,5 +1,6 @@
 
 import React from 'react';
+import { ScrollReveal } from './ScrollReveal';
 
 const serviceData = [
   {
@@ -10,7 +11,7 @@ const serviceData = [
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
       </svg>
     ),
-    color: '#8E75FF', // Gemini Indigo
+    color: '#8E75FF',
     tag: 'Advanced Coding'
   },
   {
@@ -21,7 +22,7 @@ const serviceData = [
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
       </svg>
     ),
-    color: '#4285F4', // Gemini Blue
+    color: '#4285F4',
     tag: 'CMS Architecture'
   },
   {
@@ -32,7 +33,7 @@ const serviceData = [
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M13 10V3L4 14h7v7l9-11h-7z" />
       </svg>
     ),
-    color: '#00F1FF', // Gemini Cyan
+    color: '#00F1FF',
     tag: 'Performance'
   },
   {
@@ -86,8 +87,8 @@ const FloatingBox: React.FC<{ delay: string; left: number; top: number; size: st
   />
 );
 
-const ServiceCard: React.FC<{ service: typeof serviceData[0] }> = ({ service }) => (
-  <div className="flex-shrink-0 w-[280px] md:w-[340px] h-[420px] mx-4 rounded-[2.5rem] group relative">
+const ServiceCard: React.FC<{ service: typeof serviceData[0]; index: number }> = ({ service, index }) => (
+  <ScrollReveal delay={index * 150} className="flex-shrink-0 w-[280px] md:w-[340px] h-[420px] mx-4 rounded-[2.5rem] group relative">
     {/* Orb Border Wrapper */}
     <div className="orb-border-wrap h-full rounded-[2.5rem]">
       <div className="orb-inner h-full overflow-hidden flex flex-col glass p-8 transition-all duration-500 hover:bg-white/[0.04]">
@@ -129,7 +130,7 @@ const ServiceCard: React.FC<{ service: typeof serviceData[0] }> = ({ service }) 
         ></div>
       </div>
     </div>
-  </div>
+  </ScrollReveal>
 );
 
 export const Services: React.FC = () => {
@@ -147,7 +148,7 @@ export const Services: React.FC = () => {
       </div>
 
       <div className="container mx-auto px-6 relative z-10 mb-12">
-        <div className="flex flex-col items-center text-center">
+        <ScrollReveal className="flex flex-col items-center text-center">
           <div className="px-4 py-1.5 glass rounded-full border border-primary/20 text-primary text-[9px] font-black uppercase tracking-[0.4em] mb-4">
             Monetized Skills
           </div>
@@ -157,18 +158,17 @@ export const Services: React.FC = () => {
           <p className="text-white/40 max-w-lg text-base italic">
             "Turning vision into digital gold through precision engineering and visual storytelling."
           </p>
-        </div>
+        </ScrollReveal>
       </div>
 
       {/* Infinite Slider Section */}
       <div className="services-slider-container relative w-full overflow-hidden py-6">
         <div className="services-track flex animate-scroll w-fit">
           {tripledServices.map((service, idx) => (
-            <ServiceCard key={`service-${idx}`} service={service} />
+            <ServiceCard key={`service-${idx}`} service={service} index={idx % serviceData.length} />
           ))}
         </div>
         
-        {/* Shadow Overlays for fade effect */}
         <div className="absolute top-0 left-0 w-24 md:w-48 h-full bg-gradient-to-r from-darkBg to-transparent z-10 pointer-events-none"></div>
         <div className="absolute top-0 right-0 w-24 md:w-48 h-full bg-gradient-to-l from-darkBg to-transparent z-10 pointer-events-none"></div>
       </div>

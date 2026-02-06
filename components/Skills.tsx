@@ -1,5 +1,6 @@
 
 import React, { useState } from 'react';
+import { ScrollReveal } from './ScrollReveal';
 
 // SVG Icons as components for cleaner usage
 const Icons = {
@@ -55,8 +56,8 @@ const skills = [
   { name: 'Interface Design', level: '92%', color: '#4285F4', icon: 'M12 11c0 3.517-1.009 6.799-2.753 9.571m-3.44-2.04l.054-.09A10.003 10.003 0 013 12c0-3.683 1.998-6.9 5-8.583C10.832 1.888 19 1.6 19 1.6s.3 6.9-3.235 9.513a5.5 5.5 0 01-4.765-.513z' },
 ];
 
-const SkillCard: React.FC<{ skill: typeof skills[0] }> = ({ skill }) => (
-  <div className="w-[280px] sm:w-full rounded-[2rem] group relative mr-6 sm:mr-0">
+const SkillCard: React.FC<{ skill: typeof skills[0]; index: number }> = ({ skill, index }) => (
+  <ScrollReveal delay={index * 100} className="w-[280px] sm:w-full rounded-[2rem] group relative mr-6 sm:mr-0">
     {/* Orb Border Wrapper */}
     <div className="orb-border-wrap h-full rounded-[2rem]">
       <div className="orb-inner h-full p-8 glass transition-all duration-500 hover:bg-white/[0.04]">
@@ -85,14 +86,14 @@ const SkillCard: React.FC<{ skill: typeof skills[0] }> = ({ skill }) => (
         <div className="absolute top-0 left-0 w-full h-1/2 bg-gradient-to-b from-white/[0.05] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
       </div>
     </div>
-  </div>
+  </ScrollReveal>
 );
 
 export const Skills: React.FC = () => {
   return (
     <section id="skills" className="pt-32 pb-12 relative overflow-hidden">
       <div className="container mx-auto px-6 relative z-10">
-        <div className="max-w-4xl mx-auto text-center mb-16 px-4">
+        <ScrollReveal className="max-w-4xl mx-auto text-center mb-16 px-4">
           <div className="inline-block px-4 py-1 rounded-full glass border border-primary/20 mb-6">
             <h2 className="text-[10px] font-black text-primary tracking-[0.4em] uppercase">Technological Arsenal</h2>
           </div>
@@ -100,7 +101,7 @@ export const Skills: React.FC = () => {
             The Digital <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-secondary to-sky">Matrix & Canvas</span>
           </h3>
-        </div>
+        </ScrollReveal>
 
         <div className="relative w-full overflow-hidden py-12 mb-12">
           <div className="flex animate-scroll whitespace-nowrap gap-8 w-fit">
@@ -126,7 +127,7 @@ export const Skills: React.FC = () => {
 
         <div className="mobile-slider lg:grid lg:grid-cols-4 gap-8 pb-10">
           {skills.map((skill, index) => (
-            <SkillCard key={index} skill={skill} />
+            <SkillCard key={index} skill={skill} index={index} />
           ))}
         </div>
         <div className="lg:hidden flex justify-center mt-2 gap-1.5 opacity-20">
